@@ -7,10 +7,6 @@
         "microphone": "*"
     },
     "files": [
-        "Definition.ts",
-        "Options.ts",
-        "Quadruped.ts",
-        "_locales/zh-CN/Quadruped-strings.json",
         "README.md"
     ],
     "testFiles": [
