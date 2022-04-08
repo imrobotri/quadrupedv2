@@ -1,0 +1,27 @@
+{
+    "name": "Quadrupedv2",
+    "description": "",
+    "dependencies": {
+        "core": "*",
+        "radio": "*",
+        "microphone": "*"
+    },
+    "files": [
+        "Definition.ts",
+        "Options.ts",
+        "Quadruped.ts",
+        "_locales/zh-CN/Quadruped-strings.json",
+        "README.md"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "target": "4.1.16",
+        "targetId": "microbit"
+    },
+    "supportedTargets": [
+        "microbit"
+    ],
+    "preferredEditor": "tsprj"
+}
