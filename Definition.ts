@@ -15,7 +15,7 @@ let robot_mode_1 = 0
 let state = 0
 
 //########SPI
-let SSLen = 50
+let SSLen = 52
 let InfoTemp = pins.createBuffer(SSLen)
 let ToSlaveBuf = pins.createBuffer(SSLen)
 let SfoCnt = 0
@@ -180,8 +180,8 @@ function SPICom_Walk() {
     ToSlaveBuf[usb_send_cnt++] = 1;  //功能码
 
     ToSlaveBuf[usb_send_cnt++] = gait_mode;
-    ToSlaveBuf[usb_send_cnt++] =0X00
-    ToSlaveBuf[usb_send_cnt++] =0X00
+    ToSlaveBuf[usb_send_cnt++] =0X01
+    ToSlaveBuf[usb_send_cnt++] =0X01
     get_float_hex(rc_spd_cmd_X)
     get_float_hex(rc_spd_cmd_y)
     get_float_hex(rc_att_rate_cmd)
