@@ -14,11 +14,11 @@ enum Mov_dir {
     Shift_r
 }
 
-enum Action{
+enum Actions{
     //% block="Enable"
     Enable = 1,
     //% block="Not_Enable"
-    Not_Enable = 0,
+    Not_Enable = 0
 
 }
 
