@@ -54,7 +54,7 @@ namespace Quadruped {
     //% h.min=0.00 h.max=10.00
     //% blockId=Quadruped_Height block="Height %h"
     export function Height(h: number): void {
-        rc_pos_cmd = h * 0.01
+        rc_pos_cmd = h * 0.1
         for (let i = 0; i < 10; i++)
         {
             SPI_Send()
