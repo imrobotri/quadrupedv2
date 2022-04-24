@@ -35,6 +35,8 @@
     "Quadruped.Joint|block": "关节角度 | %j|大腿 %d|小腿 %x|侧腿 %c| %s",
     "gait.Crawl|block": "爬行",
     "gait.Trot|block": "小跑",
+    "gait.Trot|block": "慢速对角步态",
+    "gait.Trot|block": "快速对角步态",
     "obstacle_t.Obstacle|block": "障碍",
     "obstacle_t.No_Obstacle|block": "无障碍",
     "obstacle_p.Someone|block": "有人",
