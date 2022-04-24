@@ -29,7 +29,7 @@ namespace Quadruped {
     //###Returns action status information||返回动作组状态信息
     /**
     * TODO:Returns the status information of the robot itself (0x00 idle, 0x01 powered on, 0x04, trot 0x06 crawling, 0x7 recovering, 0x08 fell)
-    * TODO:返回机器人自身的状态信息（0x00空闲，0x01上电，0x04，小跑0x06爬行，0x7恢复中，0x08摔倒）
+    * TODO:返回机器人自身的状态信息（0x00空闲，0x01进行中，0x02结束）
     */
     //% group="control"
     //% blockGap=8
