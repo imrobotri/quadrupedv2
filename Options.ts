@@ -35,7 +35,11 @@ enum gait {
     //% block="Trot"
     Trot,
     //% block="Crawl"
-    Crawl
+    Crawl,
+    //% block="S_TROT"
+    S_TROT,
+    //% block="F_TROT"
+    F_TROT    
 }
 
 //############Infrared||红外
