@@ -176,7 +176,7 @@ function SPICom_Walk() {
     let cnt_reg = 0
     let sum = 0
     ToSlaveBuf[usb_send_cnt++] = DaHeader; //头
-    ToSlaveBuf[usb_send_cnt++] = SSLen - 2; //固定长度
+    ToSlaveBuf[usb_send_cnt++] = 36; //固定长度
     ToSlaveBuf[usb_send_cnt++] = 1;  //功能码
 
     ToSlaveBuf[usb_send_cnt++] = gait_mode;
@@ -191,7 +191,7 @@ function SPICom_Walk() {
     get_float_hex(rc_att_cmd_y)
     get_float_hex(rc_att_cmd)
 
-    ToSlaveBuf[SSLen - 1] = DaTail;
+    ToSlaveBuf[39] = DaTail;
 }
 
 //########Data analysis||数据解析
