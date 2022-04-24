@@ -228,6 +228,30 @@ namespace Quadruped {
         }
         SPI_Send()
     }
+	
+	
+    //###Action group||动作组
+    /**
+    * TODO:Back and forth, left and right movement, left and right rotation speed control. time in seconds
+    * TODO:前后、左右移动、左右旋转速度控制。时间以秒为单位
+    */
+    //% group="control"
+    //% blockGap=8
+    //% Group.min=0 Group.max=10
+    //% time1.min=0 time1.max=255
+    //% blockId=Quadruped_Control_s block="Action group|%Group|state %sta"
+    export function Control_s(Group: number, sta: Action): void {
+	  Action_group =   Group
+	  if(sta == 1){
+		Action_group_status = 1
+	  }
+	  else{
+	  	Action_group_status = 1
+	  }
+	  SPI_Send()
+		  
+		  
+    }
     //###Movement direction and speed||运动方向与速度
     /**
     * TODO:Back and forth, left and right movement, left and right rotation speed control. time in seconds
