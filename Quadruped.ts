@@ -75,16 +75,16 @@ namespace Quadruped {
         state = 1
         basic.pause(3000)
         //serial.writeNumber(3)
-        while (1) {
-            SPI_Send()
-		serial.writeNumber(robot_mode)
-            if (robot_mode == 1) {
-                for (let i = 0; i < 2; i++) {
+        //while (1) {
+        //    SPI_Send()
+	//	serial.writeNumber(robot_mode)
+        //    if (robot_mode == 1) {
+                for (let i = 0; i < 5; i++) {
                     SPI_Send()
                     basic.pause(100)
-                }
-                return
-            }
+         //       }
+          //      return
+         //   }
             //serial.writeNumber(4)
         }
     }
