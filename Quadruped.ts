@@ -77,7 +77,7 @@ namespace Quadruped {
         //serial.writeNumber(3)
         while (1) {
             SPI_Send()
-		//serial.writeNumber(robot_mode)
+		serial.writeNumber(robot_mode)
             if (robot_mode == 1) {
                 for (let i = 0; i < 2; i++) {
                     SPI_Send()
