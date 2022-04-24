@@ -13,7 +13,7 @@
     "Quadruped.Fall_re|block": "摔倒恢复",
     "Quadruped.Height|block": "高度 %h",
     "Quadruped.Gait|block": "步态 %g",
-    "Quadruped.Action_groups|block": "动作组 |%Group",
+    "Quadruped.Action_groups|block": "动作组 |%Group|状态 %sta",
     "Quadruped.Control_s|block": "控制 |%m| 速度 %speed1 |时间 %time1",
     "Quadruped.Control_a|block": "控制 | %m| 角度 %speed1 |时间 %time1",
     "Quadruped.Ultrasound|block": "超声波 | 发射 %trig |接收 %echo |单位 %unit",
