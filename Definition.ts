@@ -1,3 +1,4 @@
+
 //########data
 let data_tx = pins.createBuffer(38);
 let gait_mode = 0; //robot status
@@ -14,7 +15,7 @@ let robot_mode_1 = 0
 let state = 0
 
 //########SPI
-let SSLen = 55
+let SSLen = 50
 let InfoTemp = pins.createBuffer(SSLen)
 let ToSlaveBuf = pins.createBuffer(SSLen)
 let SfoCnt = 0
@@ -67,7 +68,7 @@ let FrameHeader = 0x00
 let DataID = 0x00
 
 //Color
-let Color_ID = 0x00
+let Color_ID = 0x00 
 
 //Shapes
 let Shapes_ID = 0x00
@@ -164,7 +165,7 @@ function SPI_Send() {
         pins.digitalWritePin(DigitalPin.P12, 1)
         pins.digitalWritePin(DigitalPin.P16, 1)
         //serial.writeBuffer(InfoTemp)
-        serial.writeBuffer(ToSlaveBuf)
+        //serial.writeBuffer(ToSlaveBuf)
         SPI_unpacking()
         basic.pause(1)
     }
@@ -179,8 +180,6 @@ function SPICom_Walk() {
     ToSlaveBuf[usb_send_cnt++] = 1;  //功能码
 
     ToSlaveBuf[usb_send_cnt++] = gait_mode;
-    //ToSlaveBuf[usb_send_cnt++] = 0x00;
-    //ToSlaveBuf[usb_send_cnt++] = 0x00;
     get_float_hex(rc_spd_cmd_X)
     get_float_hex(rc_spd_cmd_y)
     get_float_hex(rc_att_rate_cmd)
@@ -295,34 +294,34 @@ function Joint_data() {
 //  }
 
 // 功能开启
-function IRecognitionSettings() {
+function IRecognitionSettings() { 
     let cnt = 0
     let i = 0
     let sum = 0x00
     TestTX[cnt++] = FrameHeader         //帧头
     TestTX[cnt++] = DataID              //数据ID
     TestTX[cnt++] = 0x00                //数据长度
-    if (DataID == 0x01) {
+    if (DataID  == 0x01) {
         TestTX[cnt++] = FunID           //功能ID
         TestTX[cnt++] = ColID
     }
-    else if (DataID == 0x02) {
+    else if (DataID  == 0x02) {
         TestTX[cnt++] = FunID           //功能ID
         TestTX[cnt++] = ShaID
         TestTX[cnt++] = ColID
     }
-    else if (DataID == 0x03) {
+    else if (DataID  == 0x03) { 
         TestTX[cnt++] = FunID           //功能ID
-    }
+    }  
     else if (DataID == 0x04) {
         TestTX[cnt++] = FunID
         TestTX[cnt++] = ColID
-        TestTX[cnt++] = ShaColID
+        TestTX[cnt++] = ShaColID 
     }
     TestTX[2] = cnt - 3                 //计算数据长度 
-    for (i; i < cnt; i++) {
-        sum = sum + TestTX[i]
-    }
+     for (i; i < cnt;i++) {
+         sum = sum + TestTX[i]
+    } 
     TestTX[cnt] = sum
     serial.writeBuffer(TestTX)
     basic.pause(10)
@@ -334,10 +333,10 @@ function IRecognitionToggle() {
     let cnt = 0
     TestTX[cnt++] = 0xBB                   //帧头
     for (let i = 1; i < 7; i++)
-        TestTX[cnt++] = 0x00
+        TestTX[cnt++] = 0x00 
     serial.writeBuffer(TestTX)
     basic.pause(100)
-}
+} 
 
 
 //Data sending（Image Identification）||数据发送（图像识别）
@@ -383,19 +382,19 @@ function Identify_receive() {
 }
 
 // 颜色识别
-function Identify_Color(Identify_RX_1: any) {
+function Identify_Color(Identify_RX_1: any) { 
     let Identify_RX_2 = pins.createBuffer(10)
     Identify_RX_2 = Identify_RX_1
     let cnt_I = 3
-    Color_ID = Data_conversion(Identify_RX_2[cnt_I++], Identify_RX_2[cnt_I++])       //颜色ID（1红色、2）
+    Color_ID = Data_conversion(Identify_RX_2[cnt_I++],Identify_RX_2[cnt_I++])       //颜色ID（1红色、2）
 }
 
 // 形状识别
-function Identify_Shapes(Identify_RX_1: any) {
+function Identify_Shapes(Identify_RX_1: any) { 
     let Identify_RX_2 = pins.createBuffer(50)
     Identify_RX_2 = Identify_RX_1
     let cnt_I = 11
-    Shapes_ID = Data_conversion(Identify_RX_2[cnt_I++], Identify_RX_2[cnt_I++])       //形状ID（1红色、2）
+    Shapes_ID = Data_conversion(Identify_RX_2[cnt_I++],Identify_RX_2[cnt_I++])       //形状ID（1红色、2）
 }
 
 
@@ -669,6 +668,47 @@ function GestureSelectBank(bank: number): void {
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //#################################Data conversion||数据转换######################################################
 function DecToBinTail(dec: number, pad: number) {
     let bin = "";
@@ -830,7 +870,7 @@ function usMBCRC161(pucFrame: any, usLen: number) {
     let ucCRCLo = 0xFF
     let iIndex = 0
     let i = 1
-    while (usLen > 1) {
+    while (usLen >1) {
         usLen--
         iIndex = (ucCRCLo ^ Data_1[i++])
         ucCRCLo = (ucCRCHi ^ aucCRCHi[iIndex])
@@ -858,5 +898,4 @@ function Data_conversion(data1: number, data2: number): number {
     }
 
 }
-
 
