@@ -26,6 +26,18 @@ namespace Quadruped {
     export function Status(): number {
         return robot_mode;
     }
+    //###return hexadecimal number||Returns action status information
+    /**
+    * TODO:Returns the status information of the robot itself (0x00 idle, 0x01 powered on, 0x04, trot 0x06 crawling, 0x7 recovering, 0x08 fell)
+    * TODO:返回机器人自身的状态信息（0x00空闲，0x01上电，0x04，小跑0x06爬行，0x7恢复中，0x08摔倒）
+    */
+    //% group="control"
+    //% blockGap=8
+    //% blockId=Quadruped_Action_Status block="Action_Status"
+    export function Action_Status(): number {
+        return robot_mode;
+    }	
+	
     //####Reset||复位
     /**
      *TODO:Movement speed and attitude angle reset to 0
