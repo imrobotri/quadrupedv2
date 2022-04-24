@@ -15,7 +15,7 @@ let robot_mode_1 = 0
 let state = 0
 
 //########SPI
-let SSLen = 50
+let SSLen = 52
 let InfoTemp = pins.createBuffer(SSLen)
 let ToSlaveBuf = pins.createBuffer(SSLen)
 let SfoCnt = 0
