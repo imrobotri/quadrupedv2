@@ -165,7 +165,7 @@ function SPI_Send() {
         pins.digitalWritePin(DigitalPin.P12, 1)
         pins.digitalWritePin(DigitalPin.P16, 1)
         //serial.writeBuffer(InfoTemp)
-        serial.writeBuffer(ToSlaveBuf)
+        //serial.writeBuffer(ToSlaveBuf)
         SPI_unpacking()
         basic.pause(1)
     }
