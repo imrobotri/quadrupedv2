@@ -16,9 +16,9 @@ enum Mov_dir {
 
 enum Action{
     //% block="Enable"
-    Enable,
+    Enable = 1,
     //% block="Not_Enable"
-    Not_Enable,
+    Not_Enable = 0,
 
 }
 
