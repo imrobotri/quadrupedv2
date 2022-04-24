@@ -14,6 +14,14 @@ enum Mov_dir {
     Shift_r
 }
 
+enum Action{
+    //% block="Enable"
+    Enable,
+    //% block="Not_Enable"
+    Not_Enable,
+
+}
+
 //############Movement Angle||运动角度
 enum Mov_ang {
     //% block="Left_swing"
