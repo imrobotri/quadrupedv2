@@ -180,8 +180,8 @@ function SPICom_Walk() {
     ToSlaveBuf[usb_send_cnt++] = 1;  //功能码
 
     ToSlaveBuf[usb_send_cnt++] = gait_mode;
-    ToSlaveBuf[usb_send_cnt++] =0X01
-    ToSlaveBuf[usb_send_cnt++] =0X01
+    ToSlaveBuf[usb_send_cnt++] =0X00
+    ToSlaveBuf[usb_send_cnt++] =0X00
     get_float_hex(rc_spd_cmd_X)
     get_float_hex(rc_spd_cmd_y)
     get_float_hex(rc_att_rate_cmd)
