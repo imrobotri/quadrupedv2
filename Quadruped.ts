@@ -207,15 +207,7 @@ namespace Quadruped {
                 {
                     SPI_Send()
                     basic.pause(100)
-                    }
-		gait_mode = 0x01;	
-                while (1) {
-                    SPI_Send()
-                    if (robot_mode == 0x04) {
-                        SPI_Send()
-                        
-                    }
-                }			
+                    }			
                 gait_mode = 0x02;
                 while (1) {
                     SPI_Send()
