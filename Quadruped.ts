@@ -239,8 +239,8 @@ namespace Quadruped {
     //% blockGap=8
     //% Group.min=0 Group.max=10
     //% time1.min=0 time1.max=255
-    //% blockId=Quadruped_Action_group block="Action group|%Group|state %sta"
-    export function Action_group(Group: number, sta: Actions): void {
+    //% blockId=Quadruped_Action_groups block="Action group|%Group|state %sta"
+    export function Action_groups(Group: number, sta: Actions): void {
 	  Action_group =   Group
 	  if(sta == Actions.Enable){
 		Action_group_status = 1
