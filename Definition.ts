@@ -15,7 +15,7 @@ let robot_mode_1 = 0
 let state = 0
 let Action_group = 0x00
 let Action_group_status = 0x00
-let M_Action_group_statu = 0x00
+let M_Action_group_status = 0x00
 
 //########SPI
 let SSLen = 50
