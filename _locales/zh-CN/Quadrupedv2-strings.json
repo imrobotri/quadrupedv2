@@ -35,7 +35,7 @@
     "Quadruped.OnToggle2|block": "开启/切换| %Col|巡线识别功能",
     "Quadruped.Joint_Heartbeat|block": "关节心跳",
     "Quadruped.Joint|block": "关节角度 | %j|大腿 %d|小腿 %x|侧腿 %c| %s",
-    "gai.Crawl|block": "爬行",
+    "gait.Crawl|block": "爬行",
     "Actions.Enable|block": "使能",
     "Actions.Not_Enable|block": "不使能",
     "gait.Trot|block": "小跑",
