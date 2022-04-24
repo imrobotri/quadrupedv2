@@ -13,6 +13,9 @@ let rc_att_cmd = 0.00 //Heading
 let robot_mode = 0
 let robot_mode_1 = 0
 let state = 0
+let Action_group = 0x00
+let Action_group_status = 0x00
+let M_Action_group_statu = 0x00
 
 //########SPI
 let SSLen = 50
@@ -180,8 +183,8 @@ function SPICom_Walk() {
     ToSlaveBuf[usb_send_cnt++] = 1;  //功能码
 
     ToSlaveBuf[usb_send_cnt++] = gait_mode;
-    ToSlaveBuf[usb_send_cnt++] =0X00
-    ToSlaveBuf[usb_send_cnt++] =0X00
+    ToSlaveBuf[usb_send_cnt++] =Action_group_status
+    ToSlaveBuf[usb_send_cnt++] =Action_group
     get_float_hex(rc_spd_cmd_X)
     get_float_hex(rc_spd_cmd_y)
     get_float_hex(rc_att_rate_cmd)
@@ -196,8 +199,10 @@ function SPICom_Walk() {
 //########Data analysis||数据解析
 function SPI_unpacking() {
     cnt = 0
-    if (InfoTemp[0] == 0x2B && InfoTemp[2] == 0x80)
+    if (InfoTemp[0] == 0x2B && InfoTemp[2] == 0x80){
         robot_mode = InfoTemp[3]
+        M_Action_group_status = InfoTemp[4]
+    }    
     //serial.writeNumber(robot_mode)
 }
 
