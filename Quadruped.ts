@@ -239,8 +239,8 @@ namespace Quadruped {
     //% blockGap=8
     //% Group.min=0 Group.max=10
     //% time1.min=0 time1.max=255
-    //% blockId=Quadruped_Control_s block="Action group|%Group|state %sta"
-    export function Control_s(Group: number, sta: Action): void {
+    //% blockId=Quadruped_Action_group block="Action group|%Group|state %sta"
+    export function Action_group(Group: number, sta: Action): void {
 	  Action_group =   Group
 	  if(sta == 1){
 		Action_group_status = 1
