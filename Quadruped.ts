@@ -213,8 +213,7 @@ namespace Quadruped {
                     SPI_Send()
                     if (robot_mode == 0x04) {
                         SPI_Send()
-                        //serial.writeNumber(2)
-                        return
+                        
                     }
                 }			
                 gait_mode = 0x02;
