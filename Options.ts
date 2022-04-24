@@ -1,4 +1,4 @@
-//############Movement direction||运动方向
+ //############Movement direction||运动方向
 enum Mov_dir {
     //% block="Forward"
     For,
@@ -158,7 +158,7 @@ enum FunctionID {
     ////% block="color label"
     color = 7,
     //% block="Tag label"
-    Tag = 2,
+    Tag = 2,   
 }
 
 //识别功能ID
@@ -166,41 +166,41 @@ enum FunctionID1 {
     //% block="Seek ball"
     ball = 3,
     //% block="Shape inspection"
-    Shape = 6,
+    Shape = 6, 
 }
 
 
 
 //识别颜色ID
-enum ColorID {
+enum ColorID { 
     //% block="Red"
-    Red = 1,
+    Red = 1, 
     //% block="Blue"
-    Blue = 2,
+    Blue  = 2,
     //% block="Yellow"
     Yellow = 3,
     //% block="Green"
-    Green = 4,
+    Green = 4,     
 }
 
 //识别颜色ID
-enum ColorLineID {
+enum ColorLineID { 
     //% block="Red"
-    Black = 1,
+    Black = 1, 
     //% block="Red"
-    Red = 2,
+    Red = 2,    
 }
 
 //识别形状ID
-enum ShapeID {
+enum ShapeID { 
     //% block="none"
     None = 0,
     //% block="Triangle"
     Triangle = 1,
     //% block="Rectangle"
-    Rectangle = 2,
+    Rectangle = 2,  
     //% block="Round"
-    Round = 3,
+    Round = 3, 
 }
 
 //Joint settings||关节设置
