@@ -171,7 +171,7 @@ namespace Quadruped {
                     }
                 }
             case gait.Crawl:
-                rc_pos_cmd = 0.1
+                rc_pos_cmd = 1
                 for (let i = 0; i < 5; i++)
                 {
                     SPI_Send()
@@ -187,7 +187,7 @@ namespace Quadruped {
                    }
                 }
             case gait.S_TROT:
-                rc_pos_cmd = 0.1
+                rc_pos_cmd = 1
                 for (let i = 0; i < 5; i++)
                 {
                     SPI_Send()
@@ -202,7 +202,7 @@ namespace Quadruped {
                    }
                 }
             case gait.F_TROT:
-                rc_pos_cmd = 0.1
+                rc_pos_cmd = 1
                 for (let i = 0; i < 5; i++)
                 {
                     SPI_Send()
