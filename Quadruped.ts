@@ -55,11 +55,12 @@ namespace Quadruped {
     //% blockId=Quadruped_Height block="Height %h"
     export function Height(h: number): void {
         rc_pos_cmd = h * 0.01
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 10; i++)
+        {
             SPI_Send()
             basic.pause(100)
         }
-
+        
     }
     //###Start||启动
     /**
@@ -138,7 +139,7 @@ namespace Quadruped {
     //% blockGap=8
     //% blockId=Quadruped_Stop block="Stop"
     export function Stop(): void {
-        if (robot_mode == 0x04 || robot_mode == 0x06) {
+        if (robot_mode == 0x04||robot_mode == 0x06) {
             Standing()
         }
         if (robot_mode == 1 || robot_mode == 0X02) {
@@ -171,10 +172,11 @@ namespace Quadruped {
                 }
             case gait.Crawl:
                 rc_pos_cmd = 0.1
-                for (let i = 0; i < 5; i++) {
+                for (let i = 0; i < 5; i++)
+                {
                     SPI_Send()
                     basic.pause(100)
-                }
+                    }
                 gait_mode = 0x03;
                 while (1) {
                     SPI_Send()
@@ -182,7 +184,7 @@ namespace Quadruped {
                         SPI_Send()
                         //serial.writeNumber(2)
                         return
-                    }
+                   }
                 }
         }
         SPI_Send()
@@ -200,7 +202,7 @@ namespace Quadruped {
     export function Control_s(m: Mov_dir, speed1: number, time1: number): void {
         let Sum_S = 0.00
         let time_ms = 0
-        let time_s = time1 * 1000
+        let time_s = time1*1000
         let time_start = 0
         Sum_S = speed1 / 100.00
         SPI_Send()
@@ -223,10 +225,10 @@ namespace Quadruped {
         //    basic.pause(1000)
         //}
         time_start = input.runningTime()
-        while (1) {
+        while(1){
             time_ms = input.runningTime() - time_start
             SPI_Send()
-            if (time_s <= time_ms)
+            if(time_s <= time_ms)
                 return
         }
     }
@@ -242,7 +244,7 @@ namespace Quadruped {
     //% blockId=Quadruped_Control_a block="Control angle |%m|angle_size %angle1|time %time1"
     export function Control_a(m: Mov_ang, angle1: number, time1: number): void {
         let time_ms = 0
-        let time_s = time1 * 1000
+        let time_s = time1*1000
         let time_start = 0
         switch (m) {
             case Mov_ang.Look_d:
@@ -273,13 +275,13 @@ namespace Quadruped {
         //    basic.pause(1000)
         //}
         time_start = input.runningTime()
-        while (1) {
+        while(1){
             time_ms = input.runningTime() - time_start
             SPI_Send()
-            if (time_s <= time_ms)
+            if(time_s <= time_ms)
                 return
         }
-
+        
     }
 
     //###Joint angle control||关节控制
@@ -310,7 +312,7 @@ namespace Quadruped {
     //% blockGap=8
     //% blockId=Joint_Heartbeat block="Joint Heartbeat"
     export function Joint_Heartbeat(): void {
-        Joint_SPI_Send()
+            Joint_SPI_Send()
     }
 
 
@@ -359,7 +361,7 @@ namespace Quadruped {
     //% subcategory=sensor
     //% blockGap=8
     //% blockId=sensor_Human_Infrared block="Human Infrared|pin|%pin"
-    export function Human_induction(pin: AnalogPin, value = 50): number {
+    export function Human_induction(pin: AnalogPin, value=50): number {
         let w = pins.analogReadPin(pin)
         if (w >= value)
             return 1
@@ -441,9 +443,7 @@ namespace Quadruped {
     //% h.min=0 h.max=3
     //% pwm.min=500 pwm.max=2500
     //% Gap.min=1 Gap.max=9
-    //% blockId=sensor_Steering_gear block="Steering_gear| %h | PWM_value %pwm|Rotation speed %Gap\\%"
-    //% pwm.shadow="protractorPicker"
-    //% Gap.shadow="speedPicker"
+    //% blockId=sensor_Steering_gear block="Steering_gear| %h | PWM_value %pwm|Rotation speed %Gap"
     export function Steering_gear(h: number, pwm: number, Gap: number) {
         usb_send_cnt_1 = 0;
 
@@ -462,9 +462,9 @@ namespace Quadruped {
     }
 
 
+  
 
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //###Image recognition initialization||图像识别初始化
     /**
@@ -478,16 +478,17 @@ namespace Quadruped {
         serial.setRxBufferSize(32)
     }
 
-    //OnToggleIdentify 开启/切换(颜色、标签、二维码)
+	//OnToggleIdentify 开启/切换(颜色、标签、二维码)
     /**
      * IODO:Set pattern recognition function (color, label)
      * IODO:设置图形识别功能（颜色、标签）
      */
-    //% subcategory=sensor
-    //% blockGap=8
-    //% blockId=OnToggle block="OnToggle|%Fun"
-    export function OnToggle(Fun: FunctionID): void {
-        for (let i = 1; i < 2; i++) {
+     //% subcategory=sensor
+     //% blockGap=8
+     //% blockId=OnToggle block="OnToggle|%Fun"
+    export function OnToggle(Fun:  FunctionID): void { 
+        for (let i = 1; i < 2; i++)
+            {
             IRecognitionToggle()    //复位
         }
         FrameHeader = 0xAA
@@ -496,16 +497,17 @@ namespace Quadruped {
         IRecognitionSettings()
     }
 
-    //OnToggle1 开启/切换(小球、形状、巡线)
+	//OnToggle1 开启/切换(小球、形状、巡线)
     /**
      * IODO:Set the graphic recognition function (ball, shape, line) and the corresponding recognition color
      * IODO:设置图形识别功能（小球、形状、线）以及对应识别颜色
      */
-    //% subcategory=sensor
-    //% blockGap=8
-    //% blockId=OnToggle1 block="OnToggle1| %Col|%Fun"
-    export function OnToggle1(Col: ColorID, Fun: FunctionID1): void {
-        for (let i = 1; i < 2; i++) {
+     //% subcategory=sensor
+     //% blockGap=8
+     //% blockId=OnToggle1 block="OnToggle1| %Col|%Fun"
+     export function OnToggle1(Col: ColorID,Fun:  FunctionID1): void { 
+        for (let i = 1; i < 2; i++)
+        {
             IRecognitionToggle()    //复位
         }
         FrameHeader = 0xAA
@@ -513,18 +515,19 @@ namespace Quadruped {
         ColID = Col
         FunID = Fun
         IRecognitionSettings()
-    }
-
-    //OnToggle2 开启/切换(巡线)
+    } 
+    
+ 	//OnToggle2 开启/切换(巡线)
     /**
      * IODO:Set the graphic recognition function (line) and the corresponding recognition color
      * IODO:设置图形识别功能(线）以及对应识别颜色
      */
-    //% subcategory=sensor
-    //% blockGap=8
-    //% blockId=OnToggle2 block="OnToggle2| %Col|Line"
-    export function OnToggle2(Col: ColorLineID): void {
-        for (let i = 1; i < 2; i++) {
+     //% subcategory=sensor
+     //% blockGap=8
+     //% blockId=OnToggle2 block="OnToggle2| %Col|Line"
+     export function OnToggle2(Col: ColorLineID): void { 
+        for (let i = 1; i < 2; i++)
+        {
             IRecognitionToggle()    //复位
         }
         FrameHeader = 0xAA
@@ -532,27 +535,28 @@ namespace Quadruped {
         ColID = Col
         FunID = 0x04
         IRecognitionSettings()
-    }
-
-    //TogetherOn 开启/切换巡线+形状同是识别
+    }    
+    
+	//TogetherOn 开启/切换巡线+形状同是识别
     /**
      * IODO:At the same time, open the setting pattern recognition function line patrol + line patrol and the corresponding recognition color
      * IODO:同时开启设置图形识别功能巡线+巡线以及对应识别颜色
      */
-    //% subcategory=sensor
-    //% blockGap=8
-    //% blockId=TogetherOn block="TogetherOn| %Col|Line|%Col2|Shape"
-    export function TogetherOn(Col1: ColorLineID, Col2: ColorID): void {
-        for (let i = 1; i < 2; i++) {
+     //% subcategory=sensor
+     //% blockGap=8
+     //% blockId=TogetherOn block="TogetherOn| %Col|Line|%Col2|Shape"
+     export function TogetherOn(Col1: ColorLineID,Col2: ColorID): void { 
+        for (let i = 1; i < 2; i++)
+        {
             IRecognitionToggle()    //复位
         }
         FrameHeader = 0xAA
         DataID = 0x04
         ColID = Col1
         ShaColID = Col2
-        FunID = 0x08
+        FunID = 0x08 
         IRecognitionSettings()
-    }
+    }       
 
     //###Tag code position return value||标签位置返回值
     /**
@@ -578,7 +582,7 @@ namespace Quadruped {
             default: return 255
         }
     }
-
+    
 
 
     //###Ball return value||小球返回值
