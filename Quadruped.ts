@@ -186,6 +186,36 @@ namespace Quadruped {
                         return
                    }
                 }
+            case gait.S_TROT:
+                rc_pos_cmd = 0.1
+                for (let i = 0; i < 5; i++)
+                {
+                    SPI_Send()
+                    basic.pause(100)
+                    }
+                gait_mode = 0x0D;
+                while (1) {
+                    SPI_Send()
+                    if (robot_mode == 0x0D) {
+                        SPI_Send()
+                        return
+                   }
+                }
+            case gait.F_TROT:
+                rc_pos_cmd = 0.1
+                for (let i = 0; i < 5; i++)
+                {
+                    SPI_Send()
+                    basic.pause(100)
+                    }
+                gait_mode = 0x02;
+                while (1) {
+                    SPI_Send()
+                    if (robot_mode == 0x05) {
+                        SPI_Send()
+                        return
+                   }
+                }			
         }
         SPI_Send()
     }
