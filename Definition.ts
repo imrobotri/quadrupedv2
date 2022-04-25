@@ -57,7 +57,7 @@ let HR_c = 0.0
 
 //########Image Identification||图像识别
 //------------definition--------------
-let Identify_TX = pins.createBuffer(9)
+let Identify_TX = pins.createBuffer(30)
 let Identify_RX = pins.createBuffer(50)
 let cnt_p = 0
 
@@ -298,7 +298,7 @@ function Joint_data() {
 //     serial.writeBuffer(TestTX)
 //     basic.pause(10)
 //  }
-
+/*
 // 功能开启
 function IRecognitionSettings() { 
     let cnt = 0
@@ -331,6 +331,35 @@ function IRecognitionSettings() {
     TestTX[cnt] = sum
     serial.writeBuffer(TestTX)
     basic.pause(10)
+}
+*/
+// 功能启动
+function IRecognitionSettings() {
+	cnt_p = 0
+    Identify_TX[cnt_p++] = 0x01 // 设备ID
+    Identify_TX[cnt_p++] = 0x10	//mudbus功能ＩＤ
+    Identify_TX[cnt_p++] = 0x00	
+    Identify_TX[cnt_p++] = 0x00	//寄存器起始位
+    Identify_TX[cnt_p++] = 0x00
+    Identify_TX[cnt_p++] = 0x0A //数量
+	Identify_TX[cnt_p++] = 0x14	//有效数据长度
+	Identify_TX[cnt_p++] = 0x00
+	Identify_TX[cnt_p++] = FunID //图像ＩＤ
+	Identify_TX[cnt_p++] = 0x00
+	Identify_TX[cnt_p++] = ColID　//颜色ＩＤ
+	Identify_TX[cnt_p++] = 0x00
+	Identify_TX[cnt_p++] = ColID　//颜色线ＩＤ
+	Identify_TX[cnt_p++] = 0x00
+	Identify_TX[cnt_p++] = ShaID　//形状颜色ＩＤ	
+	for(let i = 0;i<10;i++)
+		Identify_TX[cnt_p++] = 0　
+    usMBCRC161(Identify_TX, cnt_p)
+    // serial.writeBuffer(Identify_TX)
+    Identify_TX[cnt_p++] = CRC_tx_H1
+    Identify_TX[cnt_p++] = CRC_tx_L1
+    serial.writeBuffer(Identify_TX)
+    basic.pause(10)
+
 }
 
 // 功能切换
