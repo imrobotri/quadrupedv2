@@ -290,9 +290,11 @@ function IRecognitionSettings() {
     Identify_TX[cnt_p++] = 0x0A //数量
 	Identify_TX[cnt_p++] = 0x14	//有效数据长度
 	Identify_TX[cnt_p++] = 0x00
-	Identify_TX[cnt_p++] = FunID //图像ＩＤ
+	Identify_TX[cnt_p++] = 0x01 	//启动状态	
 	Identify_TX[cnt_p++] = 0x00
-	Identify_TX[cnt_p++] = ColID　//颜色ＩＤ
+	Identify_TX[cnt_p++] = FunID 	//图像ＩＤ
+	Identify_TX[cnt_p++] = 0x00
+	Identify_TX[cnt_p++] = ColID　	//颜色ＩＤ
 	Identify_TX[cnt_p++] = 0x00
 	Identify_TX[cnt_p++] = Line_ColID　//颜色线ＩＤ
 	Identify_TX[cnt_p++] = 0x00
