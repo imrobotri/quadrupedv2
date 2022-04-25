@@ -282,6 +282,7 @@ function Joint_data() {
 // 功能启动
 function IRecognitionSettings() {
 	cnt_p = 0
+	Identify_TX[cnt_p++] = 0x00	
     Identify_TX[cnt_p++] = 0x01 // 设备ID
     Identify_TX[cnt_p++] = 0x10	//mudbus功能ＩＤ
     Identify_TX[cnt_p++] = 0x00	
