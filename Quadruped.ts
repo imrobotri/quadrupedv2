@@ -562,10 +562,6 @@ namespace Quadruped {
      //% blockGap=8
      //% blockId=OnToggle block="OnToggle|%Fun"
     export function OnToggle(Fun:  FunctionID): void { 
-        for (let i = 1; i < 2; i++)
-            {
-            IRecognitionToggle()    //复位
-        }
         FrameHeader = 0xAA
         DataID = 0x03
         FunID = Fun
@@ -581,10 +577,6 @@ namespace Quadruped {
      //% blockGap=8
      //% blockId=OnToggle1 block="OnToggle1| %Col|%Fun"
      export function OnToggle1(Col: ColorID,Fun:  FunctionID1): void { 
-        for (let i = 1; i < 2; i++)
-        {
-            IRecognitionToggle()    //复位
-        }
         FrameHeader = 0xAA
         DataID = 0x01
         ColID = Col
@@ -601,10 +593,6 @@ namespace Quadruped {
      //% blockGap=8
      //% blockId=OnToggle2 block="OnToggle2| %Col|Line"
      export function OnToggle2(Col: ColorLineID): void { 
-        for (let i = 1; i < 2; i++)
-        {
-            IRecognitionToggle()    //复位
-        }
         FrameHeader = 0xAA
         DataID = 0x01
         ColID = Col
@@ -621,10 +609,6 @@ namespace Quadruped {
      //% blockGap=8
      //% blockId=TogetherOn block="TogetherOn| %Col|Line|%Col2|Shape"
      export function TogetherOn(Col1: ColorLineID,Col2: ColorID): void { 
-        for (let i = 1; i < 2; i++)
-        {
-            IRecognitionToggle()    //复位
-        }
         FrameHeader = 0xAA
         DataID = 0x04
         ColID = Col1
