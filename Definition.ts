@@ -296,7 +296,7 @@ function IRecognitionSettings() {
 	Identify_TX[cnt_p++] = 0x00
 	Identify_TX[cnt_p++] = Line_ColID　//颜色线ＩＤ
 	Identify_TX[cnt_p++] = 0x00
-	Identify_TX[cnt_p++] = ShaID　//形状颜色ＩＤ	
+	Identify_TX[cnt_p++] = ShaColID　//形状颜色ＩＤ	
 	for(let i = 0;i<10;i++)
 		Identify_TX[cnt_p++] = 0　
     usMBCRC161(Identify_TX, cnt_p)
