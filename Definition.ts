@@ -65,6 +65,7 @@ let cnt_p = 0
 let TestTX = pins.createBuffer(7)
 let FunID = 0x00
 let ColID = 0x00
+let Line_ColID = 0x00
 let ShaID = 0x00
 let ShaColID = 0x00
 let FrameHeader = 0x00
@@ -293,7 +294,7 @@ function IRecognitionSettings() {
 	Identify_TX[cnt_p++] = 0x00
 	Identify_TX[cnt_p++] = ColID　//颜色ＩＤ
 	Identify_TX[cnt_p++] = 0x00
-	Identify_TX[cnt_p++] = ColID　//颜色线ＩＤ
+	Identify_TX[cnt_p++] = Line_ColID　//颜色线ＩＤ
 	Identify_TX[cnt_p++] = 0x00
 	Identify_TX[cnt_p++] = ShaID　//形状颜色ＩＤ	
 	for(let i = 0;i<10;i++)
