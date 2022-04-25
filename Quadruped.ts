@@ -562,8 +562,6 @@ namespace Quadruped {
      //% blockGap=8
      //% blockId=OnToggle block="OnToggle|%Fun"
     export function OnToggle(Fun:  FunctionID): void { 
-        FrameHeader = 0xAA
-        DataID = 0x03
         FunID = Fun
         IRecognitionSettings()
     }
@@ -577,8 +575,6 @@ namespace Quadruped {
      //% blockGap=8
      //% blockId=OnToggle1 block="OnToggle1| %Col|%Fun"
      export function OnToggle1(Col: ColorID,Fun:  FunctionID1): void { 
-        FrameHeader = 0xAA
-        DataID = 0x01
         ColID = Col
         FunID = Fun
         IRecognitionSettings()
@@ -593,10 +589,8 @@ namespace Quadruped {
      //% blockGap=8
      //% blockId=OnToggle2 block="OnToggle2| %Col|Line"
      export function OnToggle2(Col: ColorLineID): void { 
-        FrameHeader = 0xAA
-        DataID = 0x01
-        ColID = Col
-        FunID = 0x04
+        Line_ColID = Col
+        FunID = 0x03
         IRecognitionSettings()
     }    
     
@@ -609,11 +603,9 @@ namespace Quadruped {
      //% blockGap=8
      //% blockId=TogetherOn block="TogetherOn| %Col|Line|%Col2|Shape"
      export function TogetherOn(Col1: ColorLineID,Col2: ColorID): void { 
-        FrameHeader = 0xAA
-        DataID = 0x04
-        ColID = Col1
+        Line_ColID = Col1
         ShaColID = Col2
-        FunID = 0x08 
+        FunID = 0x06 
         IRecognitionSettings()
     }       
 
@@ -626,7 +618,7 @@ namespace Quadruped {
     //% blockGap=8
     //% blockId=sensor_Tag_return block="Tag code position return value| %data"
     export function Tag_return(data: Position): number {
-        Function_c = 0x19
+        Function_c = 0x2D
         Function_s = 2
         Identify_send()
         Identify_receive()
@@ -678,7 +670,7 @@ namespace Quadruped {
     //% blockGap=8
     //% blockId=sensor_Line_return block="Line patrol return value| %x"
     export function Line_return(X: Line_Position): number {
-        Function_c = 0x23
+        Function_c = 0x19
         Function_s = 4
         Identify_send()
         Identify_receive()
@@ -701,7 +693,7 @@ namespace Quadruped {
     //% blockGap=8
     //% blockId=ColorRecognition block="Color Recognition return value"
     export function Colorreturn(): number {
-        Function_c = 0x41
+        Function_c = 0x0A
         Function_s = 1
         Identify_send()
         Identify_receive()
