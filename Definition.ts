@@ -278,61 +278,6 @@ function Joint_data() {
     ToSlaveBuf[SSLen - 1] = DaTail_2;
 }
 
-
-// //识别功能、颜色开、形状、形状颜色开启
-// function IRecognitionSettings() {
-//     let cnt = 0
-//     let i = 0
-//     let sum = 0x00
-//     TestTX[cnt++] = FrameHeader
-//     TestTX[cnt++] = 0x00
-//     TestTX[cnt++] = FunID
-//     TestTX[cnt++] = ColID
-//     TestTX[cnt++] = ShaID
-//     TestTX[cnt++] = ShaColID
-//     TestTX[1] = cnt - 2
-//     for (i; i < cnt;i++) {
-//         sum = sum + TestTX[i]
-//     }
-//     TestTX[cnt] = sum
-//     serial.writeBuffer(TestTX)
-//     basic.pause(10)
-//  }
-/*
-// 功能开启
-function IRecognitionSettings() { 
-    let cnt = 0
-    let i = 0
-    let sum = 0x00
-    TestTX[cnt++] = FrameHeader         //帧头
-    TestTX[cnt++] = DataID              //数据ID
-    TestTX[cnt++] = 0x00                //数据长度
-    if (DataID  == 0x01) {
-        TestTX[cnt++] = FunID           //功能ID
-        TestTX[cnt++] = ColID
-    }
-    else if (DataID  == 0x02) {
-        TestTX[cnt++] = FunID           //功能ID
-        TestTX[cnt++] = ShaID
-        TestTX[cnt++] = ColID
-    }
-    else if (DataID  == 0x03) { 
-        TestTX[cnt++] = FunID           //功能ID
-    }  
-    else if (DataID == 0x04) {
-        TestTX[cnt++] = FunID
-        TestTX[cnt++] = ColID
-        TestTX[cnt++] = ShaColID 
-    }
-    TestTX[2] = cnt - 3                 //计算数据长度 
-     for (i; i < cnt;i++) {
-         sum = sum + TestTX[i]
-    } 
-    TestTX[cnt] = sum
-    serial.writeBuffer(TestTX)
-    basic.pause(10)
-}
-*/
 // 功能启动
 function IRecognitionSettings() {
 	cnt_p = 0
@@ -361,18 +306,6 @@ function IRecognitionSettings() {
     basic.pause(10)
 
 }
-
-// 功能切换
-function IRecognitionToggle() {
-    let RXSS = 0X00
-    let cnt = 0
-    TestTX[cnt++] = 0xBB                   //帧头
-    for (let i = 1; i < 7; i++)
-        TestTX[cnt++] = 0x00 
-    serial.writeBuffer(TestTX)
-    basic.pause(100)
-} 
-
 
 //Data sending（Image Identification）||数据发送（图像识别）
 function Identify_send() {
