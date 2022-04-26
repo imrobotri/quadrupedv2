@@ -302,7 +302,7 @@ let InfoTemp_1 = pins.createBuffer(SSLen)
 	Identify_TX[cnt_p++] = ShaColID　//形状颜色ＩＤ	
 	for(let i = 0;i<10;i++)
 		Identify_TX[cnt_p++] = 0　
-	for(for(let i = 0;i<cnt_p;i++))	
+	for(let i = 0;i<cnt_p;i++)	
 		InfoTemp_1[i+1] = Identify_TX[i]
     usMBCRC161(InfoTemp_1, cnt_p)
     // serial.writeBuffer(Identify_TX)
