@@ -301,7 +301,8 @@ let InfoTemp_1 = pins.createBuffer(SSLen)
 	Identify_TX[cnt_p++] = 0x00
 	Identify_TX[cnt_p++] = ShaColID　//形状颜色ＩＤ	
 	for(let i = 0;i<10;i++)
-		Identify_TX[cnt_p++] = 0　
+		Identify_TX[cnt_p++] = 0
+	InfoTemp_1[0] = 0
 	for(let i = 0;i<cnt_p;i++)	
 		InfoTemp_1[i+1] = Identify_TX[i]
     usMBCRC161(InfoTemp_1, cnt_p)
