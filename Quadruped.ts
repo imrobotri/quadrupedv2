@@ -575,7 +575,7 @@ namespace Quadruped {
      //% blockGap=8
      //% blockId=OnToggle1 block="OnToggle1| %Col|%Fun"
      export function OnToggle1(Col: ColorID,Fun:  FunctionID1): void { 
-	if(FunID == 2){     
+	if(Fun == 2){     
        		ColID = Col
 	}
 	ShaColID  = Col   
