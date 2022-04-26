@@ -60,7 +60,7 @@ let HR_c = 0.0
 let Identify_TX = pins.createBuffer(30)
 let Identify_TX1 = pins.createBuffer(30)
 let Identify_TX2 = pins.createBuffer(8)
-let Identify_RX = pins.createBuffer(60)
+let Identify_RX = pins.createBuffer(50)
 let cnt_p = 0
 
 //识别设置
