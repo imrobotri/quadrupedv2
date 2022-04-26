@@ -307,7 +307,7 @@ function IRecognitionSettings() {
 	for(let i = 0;i<10;i++)
 		Identify_TX[cnt_p++] = 0
 	for(let i = 1;i<cnt_p;i++)	
-		Identify_TX1[i] = Identify_TX[i]
+		Identify_TX1[i] = Identify_TX[i-1]
     usMBCRC161(Identify_TX1, cnt_p)
     // serial.writeBuffer(Identify_TX)
     Identify_TX[cnt_p++] = CRC_tx_H1
