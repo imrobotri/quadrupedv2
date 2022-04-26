@@ -314,7 +314,7 @@ function IRecognitionSettings() {
     Identify_TX[cnt_p++] = CRC_tx_H1
     Identify_TX[cnt_p++] = CRC_tx_L1
     serial.writeBuffer(Identify_TX)
-    basic.pause(1)
+    basic.pause(10)
 
 }
 
@@ -335,7 +335,7 @@ function Identify_send() {
     Identify_TX2[cnt_p++] = CRC_tx_H1
     Identify_TX2[cnt_p++] = CRC_tx_L1
     serial.writeBuffer(Identify_TX2)
-    basic.pause(1)
+    basic.pause(10)
 
 }
 //Data reception（Image Identification）||数据接收（图像识别）
