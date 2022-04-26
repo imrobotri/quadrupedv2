@@ -550,7 +550,8 @@ namespace Quadruped {
     //% blockGap=8
     //% blockId=sensor_Image_ini block="Image recognition initialization"
     export function Image_init() {
-        serial.setRxBufferSize(32)
+        serial.setRxBufferSize(50)
+	    //serial.writeBuffer()
     }
 
 	//OnToggleIdentify 开启/切换(颜色、标签、二维码)
