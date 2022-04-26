@@ -808,7 +808,7 @@ let aucCRCLo = [0x00, 0xC0, 0xC1, 0x01, 0xC3, 0x03, 0x02, 0xC2, 0xC6, 0x06, 0x07
 function usMBCRC16(pucFrame: any, usLen: number) {
     // serial.writeNumber(usLen)
     // serial.writeBuffer(pucFrame)
-    let Data_1 = pins.createBuffer(9)
+    let Data_1 = pins.createBuffer(30)
     let Data_2 = pins.createBuffer(2)
     let Data_3
     let usLen_1 = usLen
