@@ -59,6 +59,7 @@ let HR_c = 0.0
 //------------definition--------------
 let Identify_TX = pins.createBuffer(30)
 let Identify_TX1 = pins.createBuffer(30)
+let Identify_TX2 = pins.createBuffer(8)
 let Identify_RX = pins.createBuffer(50)
 let cnt_p = 0
 
@@ -321,19 +322,19 @@ function IRecognitionSettings() {
 function Identify_send() {
     cnt_p = 0
 	Identify_TX1[0] = 0x00
-    Identify_TX[cnt_p++] = 0x01 // ID
-    Identify_TX[cnt_p++] = 0x03
-    Identify_TX[cnt_p++] = 0x00
-    Identify_TX[cnt_p++] = Function_c
-    Identify_TX[cnt_p++] = 0x00
-    Identify_TX[cnt_p++] = 0x0A
+    Identify_TX2[cnt_p++] = 0x01 // ID
+    Identify_TX2[cnt_p++] = 0x03
+    Identify_TX2[cnt_p++] = 0x00
+    Identify_TX2[cnt_p++] = Function_c
+    Identify_TX2[cnt_p++] = 0x00
+    Identify_TX2[cnt_p++] = 0x0A
 		for(let i = 0;i<cnt_p;i++)	
-		Identify_TX1[i+1] = Identify_TX[i]
+		Identify_TX1[i+1] = Identify_TX2[i]
     usMBCRC161(Identify_TX1, cnt_p+1)
     // serial.writeBuffer(Identify_TX)
-    Identify_TX[cnt_p++] = CRC_tx_H1
-    Identify_TX[cnt_p++] = CRC_tx_L1
-    serial.writeBuffer(Identify_TX)
+    Identify_TX2[cnt_p++] = CRC_tx_H1
+    Identify_TX2[cnt_p++] = CRC_tx_L1
+    serial.writeBuffer(Identify_TX2)
     basic.pause(1)
 
 }
