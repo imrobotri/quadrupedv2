@@ -809,7 +809,7 @@ function usMBCRC16(pucFrame: any, usLen: number) {
     let Data_1 = pins.createBuffer(30)
     let Data_2 = pins.createBuffer(2)
     let Data_3
-    let usLen_1 = usLen
+    let usLen_1 = usLen + 1
     Data_1 = pucFrame
     let ucCRCHi = 0xFF
     let ucCRCLo = 0xFF
