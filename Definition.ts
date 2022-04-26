@@ -314,7 +314,7 @@ function IRecognitionSettings() {
     Identify_TX[cnt_p++] = CRC_tx_H1
     Identify_TX[cnt_p++] = CRC_tx_L1
     serial.writeBuffer(Identify_TX)
-    basic.pause(10)
+    basic.pause(100)
 
 }
 
