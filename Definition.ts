@@ -283,7 +283,7 @@ function Joint_data() {
 // 功能启动
 function IRecognitionSettings() {
 	cnt_p = 0
-	Identify_TX1[0] = 0x00 // 设备ID
+	Identify_TX1[0] = 0x00
 
     Identify_TX[cnt_p++] = 0x01 // 设备ID
 
@@ -313,25 +313,28 @@ function IRecognitionSettings() {
     Identify_TX[cnt_p++] = CRC_tx_H1
     Identify_TX[cnt_p++] = CRC_tx_L1
     serial.writeBuffer(Identify_TX)
-    basic.pause(10)
+    basic.pause(1)
 
 }
 
 //Data sending（Image Identification）||数据发送（图像识别）
 function Identify_send() {
     cnt_p = 0
+	Identify_TX1[0] = 0x00
     Identify_TX[cnt_p++] = 0x01 // ID
     Identify_TX[cnt_p++] = 0x03
     Identify_TX[cnt_p++] = 0x00
     Identify_TX[cnt_p++] = Function_c
     Identify_TX[cnt_p++] = 0x00
     Identify_TX[cnt_p++] = 0x0A
-    usMBCRC161(Identify_TX, cnt_p)
+		for(let i = 0;i<cnt_p;i++)	
+		Identify_TX1[i+1] = Identify_TX[i]
+    usMBCRC161(Identify_TX, cnt_p+1)
     // serial.writeBuffer(Identify_TX)
     Identify_TX[cnt_p++] = CRC_tx_H1
     Identify_TX[cnt_p++] = CRC_tx_L1
     serial.writeBuffer(Identify_TX)
-    basic.pause(10)
+    basic.pause(1)
 
 }
 //Data reception（Image Identification）||数据接收（图像识别）
