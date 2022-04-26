@@ -60,7 +60,7 @@ let HR_c = 0.0
 let Identify_TX = pins.createBuffer(30)
 let Identify_TX1 = pins.createBuffer(30)
 let Identify_TX2 = pins.createBuffer(8)
-let Identify_RX = pins.createBuffer(50)
+let Identify_RX = pins.createBuffer(60)
 let cnt_p = 0
 
 //识别设置
@@ -293,7 +293,7 @@ function IRecognitionSettings() {
     Identify_TX[cnt_p++] = 0x00	
     Identify_TX[cnt_p++] = 0x00	//寄存器起始位
     Identify_TX[cnt_p++] = 0x00
-    Identify_TX[cnt_p++] = 0x0A //数量
+    Identify_TX[cnt_p++] = 0x09 //数量
 	Identify_TX[cnt_p++] = 0x14	//有效数据长度
 	Identify_TX[cnt_p++] = 0x00
 	Identify_TX[cnt_p++] = 0x01 	//启动状态	
@@ -325,9 +325,9 @@ function Identify_send() {
     Identify_TX2[cnt_p++] = 0x01 // ID
     Identify_TX2[cnt_p++] = 0x03
     Identify_TX2[cnt_p++] = 0x00
-    Identify_TX2[cnt_p++] = Function_c
-    Identify_TX2[cnt_p++] = 0x00
     Identify_TX2[cnt_p++] = 0x0A
+    Identify_TX2[cnt_p++] = 0x00
+    Identify_TX2[cnt_p++] = 0x19
 		for(let i = 0;i<cnt_p;i++)	
 		Identify_TX1[i+1] = Identify_TX2[i]
     usMBCRC161(Identify_TX1, cnt_p+1)
@@ -356,6 +356,7 @@ function Identify_receive() {
                 case 4: Line_inspection(Identify_RX); break;
                 case 5: Identify_Shapes(Identify_RX); break;
                 default: return
+           }
             }
         }
     }
@@ -374,7 +375,7 @@ function Identify_Color(Identify_RX_1: any) {
 function Identify_Shapes(Identify_RX_1: any) { 
     let Identify_RX_2 = pins.createBuffer(50)
     Identify_RX_2 = Identify_RX_1
-    let cnt_I = 3
+    let cnt_I = 25
     Shapes_ID = Data_conversion(Identify_RX_2[cnt_I++],Identify_RX_2[cnt_I++])       //形状ID（1红色、2）
 }
 
@@ -385,7 +386,7 @@ function Identify_collection(Identify_RX_1: any) {
     //serial.writeBuffer(Identify_RX_1)
     let Identify_RX_2 = pins.createBuffer(50)
     Identify_RX_2 = Identify_RX_1
-    let cnt_I = 3
+    let cnt_I = 27
     Identify_status = Data_conversion(Identify_RX_2[cnt_I++], Identify_RX_2[cnt_I++])   //
     // serial.writeNumber(Identify_status)
     Identify_pattern = Data_conversion(Identify_RX_2[cnt_I++], Identify_RX_2[cnt_I++])  //
@@ -403,7 +404,7 @@ function Identify_collection(Identify_RX_1: any) {
 function Ball_rd(Identify_RX_1: any) {
     let Identify_RX_2 = pins.createBuffer(50)
     Identify_RX_2 = Identify_RX_1
-    let cnt_I = 3
+    let cnt_I = 5
     //serial.writeBuffer(Identify_RX_2)
     Ball_status = Data_conversion(Identify_RX_2[cnt_I++], Identify_RX_2[cnt_I++])
     Ball_X = Data_conversion(Identify_RX_2[cnt_I++], Identify_RX_2[cnt_I++])
@@ -418,7 +419,7 @@ function Ball_rd(Identify_RX_1: any) {
 function Line_inspection(Identify_RX_1: any) {
     let Identify_RX_2 = pins.createBuffer(50)
     Identify_RX_2 = Identify_RX_1
-    let cnt_I = 3
+    let cnt_I = 17
     Line_detect = Data_conversion(Identify_RX_2[cnt_I++], Identify_RX_2[cnt_I++]) //Detect
     Line_effect = Data_conversion(Identify_RX_2[cnt_I++], Identify_RX_2[cnt_I++]) //The effect of the identification line
     Line_angle = Data_conversion(Identify_RX_2[cnt_I++], Identify_RX_2[cnt_I++]) //angle
