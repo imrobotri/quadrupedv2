@@ -283,7 +283,6 @@ function Joint_data() {
 // 功能启动
 function IRecognitionSettings() {
 	cnt_p = 0
-	cnt_p_1 = 0
 	Identify_TX[cnt_p++] = 0x00 // 设备ID
 	Identify_TX1[0] = 0x00 // 设备ID
 
