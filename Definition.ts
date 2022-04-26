@@ -356,7 +356,6 @@ function Identify_receive() {
                 case 4: Line_inspection(Identify_RX); break;
                 case 5: Identify_Shapes(Identify_RX); break;
                 default: return
-           }
             }
         }
     }
