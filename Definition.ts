@@ -293,7 +293,7 @@ function IRecognitionSettings() {
     Identify_TX[cnt_p++] = 0x00	
     Identify_TX[cnt_p++] = 0x00	//寄存器起始位
     Identify_TX[cnt_p++] = 0x00
-    Identify_TX[cnt_p++] = 0x09 //数量
+    Identify_TX[cnt_p++] = 0x0 //数量
 	Identify_TX[cnt_p++] = 0x14	//有效数据长度
 	Identify_TX[cnt_p++] = 0x00
 	Identify_TX[cnt_p++] = 0x01 	//启动状态	
