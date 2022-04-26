@@ -814,7 +814,7 @@ function usMBCRC16(pucFrame: any, usLen: number) {
     let ucCRCHi = 0xFF
     let ucCRCLo = 0xFF
     let iIndex, i = 0
-    while (usLen--) {
+    while (usLen_1--) {
         iIndex = (ucCRCLo ^ Data_1[i++])
         ucCRCLo = (ucCRCHi ^ aucCRCHi[iIndex])
         ucCRCHi = aucCRCLo[iIndex]
