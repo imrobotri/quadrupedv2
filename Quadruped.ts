@@ -565,6 +565,7 @@ namespace Quadruped {
     export function OnToggle(Fun:  FunctionID): void { 
         FunID = Fun
         IRecognitionSettings()
+	IRecognitionSettings()
     }
 
 	//OnToggle1 开启/切换(小球、形状、巡线)
@@ -582,6 +583,7 @@ namespace Quadruped {
 	ShaColID  = Col   
 	FunID = Fun     
         IRecognitionSettings()
+	IRecognitionSettings()
     } 
     
  	//OnToggle2 开启/切换(巡线)
@@ -596,6 +598,7 @@ namespace Quadruped {
         Line_ColID = Col
         FunID = 0x03
         IRecognitionSettings()
+	IRecognitionSettings()
     }    
     
 	//TogetherOn 开启/切换巡线+形状同是识别
@@ -611,6 +614,7 @@ namespace Quadruped {
         ShaColID = Col2
         FunID = 0x06 
         IRecognitionSettings()
+	IRecognitionSettings()
     }       
 
     //###Tag code position return value||标签位置返回值
