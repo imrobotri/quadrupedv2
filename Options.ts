@@ -168,17 +168,17 @@ enum enColor {
 //识别功能ID
 enum FunctionID {
     ////% block="color label"
-    color = 7,
+    color = 1,
     //% block="Tag label"
-    Tag = 2,   
+    Tag = 5,   
 }
 
 //识别功能ID
 enum FunctionID1 {
     //% block="Seek ball"
-    ball = 3,
+    ball = 2,
     //% block="Shape inspection"
-    Shape = 6, 
+    Shape = 4, 
 }
 
 
