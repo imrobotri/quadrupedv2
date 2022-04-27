@@ -335,9 +335,60 @@ function Identify_send() {
     Identify_TX2[cnt_p++] = CRC_tx_H1
     Identify_TX2[cnt_p++] = CRC_tx_L1
     serial.writeBuffer(Identify_TX2)
-    basic.pause(10)
+    //basic.pause(1)
 
 }
+//Data reception（Image Identification）||数据接收（图像识别）
+function Identify_receive() {
+    //serial.setRxBufferSize(32)
+    let position_r = 0
+    let sum_r = 0x00
+    let length_r = 0
+    let cnt_I = 3
+    Identify_RX = serial.readBuffer(0)
+    if (Identify_RX[0] == 0x01 && Identify_RX[1] < 0x03) {
+        length_r = Identify_RX[2]
+        usMBCRC16(Identify_RX, length_r + 3)
+        if (Identify_RX[length_r + 3] == CRC_H && Identify_RX[length_r + 4] == CRC_L) {
+		//颜色识别
+		Color_ID = Data_conversion(Identify_RX[cnt_I++],Identify_RX[cnt_I++])	
+		//小球跟踪
+		Ball_status = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])
+    		Ball_X = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])
+    		Ball_Y = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])
+    		Ball_W = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])
+    		Ball_H = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])
+    		Ball_pixels = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])
+		//巡线
+		Line_detect = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++]) //Detect
+    		Line_effect = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++]) //The effect of the identification line
+    		Line_angle = Data_conversion(Identify_RX[cnt_I++], IIdentify_RX[cnt_I++]) //angle
+    		Line_position = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])//position
+		//形状
+		Shapes_ID = Data_conversion(Identify_RX[cnt_I++],Identify_RX[cnt_I++])       //
+		//标签
+		Identify_status = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])   //
+   		Identify_pattern = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])  //
+    		Identify_x = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])        //
+    		Identify_y = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])        //
+    		Identify_z = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])        //
+    		Identify_Flip_x = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])   //
+    		Identify_Flip_y = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])   //
+    		Identify_Flip_z = Data_conversion(IIdentify_RX[cnt_I++], Identify_RX[cnt_I++])   //
+		
+        }
+	    return 2
+    }
+   else if (Identify_RX[0] == 0x01 && Identify_RX[1] < 0x10) {
+	length_r = Identify_RX[2]
+        usMBCRC16(Identify_RX, length_r + 3)
+	if (Identify_RX[length_r + 3] == CRC_H && Identify_RX[length_r + 4] == CRC_L) {   
+   		return 1
+	}	
+   }
+   return 0 
+}
+/*
 //Data reception（Image Identification）||数据接收（图像识别）
 function Identify_receive() {
     //serial.setRxBufferSize(32)
@@ -361,7 +412,7 @@ function Identify_receive() {
     }
     return
 }
-
+/*
 // 颜色识别
 function Identify_Color(Identify_RX_1: any) { 
     let Identify_RX_2 = pins.createBuffer(10)
@@ -425,56 +476,7 @@ function Line_inspection(Identify_RX_1: any) {
     Line_position = Data_conversion(Identify_RX_2[cnt_I++], Identify_RX_2[cnt_I++])//position
 
 }
-
-//Voice recognition reception||语音识别接收
-function voice_rx() {
-    let rx_data = pins.createBuffer(4) //Create an array
-    rx_data = serial.readBuffer(0) //Read data in RX buffer
-    if (rx_data[0] == 0xF4 && rx_data[1] == 0x06 && rx_data[3] == 0xff) {
-        get_data = rx_data[2]
-    }
-}
-
-//Voice initialization||语音初始化
-function Voice_init() {
-    Quadruped.init()
-    Quadruped.Height(10)
-    Quadruped.Start()
-}
-
-//Voice data analysis||语音数据解析
-function voice_data() {
-
-    switch (get_data) {
-        case 0x02: Voice_init(); break;
-        case 0x03: Quadruped.Stop(); break;
-        case 0x04: Quadruped.Reset; Quadruped.Stand(); break;
-        case 0x05: Quadruped.Reset; Quadruped.Gait(gait.Trot); break;
-        //case 0x06: Quadruped.Reset; Quadruped.Gait(gait.Crawl); break;
-        case 0x07: Quadruped.Height(10); break;
-        case 0x08: Quadruped.Height(4); break;
-        case 0x09: Quadruped.Reset; Quadruped.Control_s(Mov_dir.For, voice_speed, 50); break;
-        case 0x0A: Quadruped.Reset; Quadruped.Control_s(Mov_dir.Bac, voice_speed, 50); break;
-        case 0x0B: Quadruped.Reset; Quadruped.Control_s(Mov_dir.Turn_l, voice_speed, 50); break;
-        case 0x0C: Quadruped.Reset; Quadruped.Control_s(Mov_dir.Turn_r, voice_speed, 50); break;
-        case 0x0D: Quadruped.Reset; Quadruped.Control_s(Mov_dir.Shift_l, voice_speed, 50); break;
-        case 0x0E: Quadruped.Reset; Quadruped.Control_s(Mov_dir.Shift_r, voice_speed, 50); break;
-        case 0x0F: Quadruped.Reset; Quadruped.Control_s(Mov_dir.For, voice_speed, 0); Quadruped.Control_s(Mov_dir.Shift_l, voice_speed, 50); break;
-        case 0x10: Quadruped.Reset; Quadruped.Control_s(Mov_dir.Bac, voice_speed, 0); Quadruped.Control_s(Mov_dir.Shift_l, voice_speed, 50); break;
-        case 0x11: Quadruped.Reset; Quadruped.Control_s(Mov_dir.For, voice_speed, 0); Quadruped.Control_s(Mov_dir.Shift_r, voice_speed, 50); break;
-        case 0x12: Quadruped.Stand(); Quadruped.Control_s(Mov_dir.For, voice_speed, 0); Quadruped.Control_s(Mov_dir.Shift_l, voice_speed, 50); break;
-        case 0x13: voice_speed++; break;
-        case 0x14: voice_speed--; break;
-        case 0x15: Quadruped.Reset; Quadruped.Control_a(Mov_ang.Look_d, 10, 20); break;
-        case 0x16: Quadruped.Reset; Quadruped.Control_a(Mov_ang.Look_u, 10, 20); break;
-        case 0x17: Quadruped.Reset; Quadruped.Control_a(Mov_ang.L_swing, 10, 20); break;
-        case 0x18: Quadruped.Reset; Quadruped.Control_a(Mov_ang.R_swing, 10, 20); break;
-        default: return
-
-    }
-
-}
-
+*/
 //########gesture||手势
 let Init_Register_Array = [
     [0xEF, 0x00],
