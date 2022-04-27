@@ -60,7 +60,7 @@ let HR_c = 0.0
 let Identify_TX = pins.createBuffer(30)
 let Identify_TX1 = pins.createBuffer(30)
 let Identify_TX2 = pins.createBuffer(8)
-let Identify_RX = pins.createBuffer(50)
+let Identify_RX = pins.createBuffer(80)
 let cnt_p = 0
 
 //识别设置
@@ -851,7 +851,7 @@ function usMBCRC16(pucFrame: any, usLen: number) {
 function usMBCRC161(pucFrame: any, usLen: number) {
     // serial.writeNumber(usLen)
     // serial.writeBuffer(pucFrame)
-    let Data_1 = pins.createBuffer(9)
+    let Data_1 = pins.createBuffer(80)
     let Data_2 = pins.createBuffer(2)
     let Data_3
     let usLen_1 = usLen
