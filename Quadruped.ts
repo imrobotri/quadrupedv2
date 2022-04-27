@@ -728,6 +728,7 @@ namespace Quadruped {
         Identify_send()
         //Identify_receive()
 	while(1){
+		Identify_send()
 		if(Identify_receive() == 2 || (i++)<10)
 			break
 	}    
