@@ -384,7 +384,9 @@ function Identify_receive() {
 	length_r = Identify_RX[2]
         usMBCRC16(Identify_RX, length_r + 3)
 	if (Identify_RX[length_r + 3] == CRC_H && Identify_RX[length_r + 4] == CRC_L) {   
-   		return 1
+   		basic.showNumber(1)
+		return 1
+		
 	}	
    }
    return 0 
