@@ -362,7 +362,7 @@ function Identify_receive() {
 		//巡线
 		Line_detect = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++]) //Detect
     		Line_effect = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++]) //The effect of the identification line
-    		Line_angle = Data_conversion(Identify_RX[cnt_I++], IIdentify_RX[cnt_I++]) //angle
+    		Line_angle = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++]) //angle
     		Line_position = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])//position
 		//形状
 		Shapes_ID = Data_conversion(Identify_RX[cnt_I++],Identify_RX[cnt_I++])       //
@@ -374,7 +374,7 @@ function Identify_receive() {
     		Identify_z = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])        //
     		Identify_Flip_x = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])   //
     		Identify_Flip_y = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])   //
-    		Identify_Flip_z = Data_conversion(IIdentify_RX[cnt_I++], Identify_RX[cnt_I++])   //
+    		Identify_Flip_z = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])   //
 		
         }
 	    return 2
