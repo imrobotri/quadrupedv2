@@ -583,6 +583,7 @@ namespace Quadruped {
      //% blockGap=8
      //% blockId=OnToggle1 block="OnToggle1| %Col|%Fun"
      export function OnToggle1(Col: ColorID,Fun:  FunctionID1): void { 
+	let i = 0     
 	if(Fun == 2){     
        		ColID = Col
 	}
@@ -605,6 +606,7 @@ namespace Quadruped {
      //% blockGap=8
      //% blockId=OnToggle2 block="OnToggle2| %Col|Line"
      export function OnToggle2(Col: ColorLineID): void { 
+	let i = 0     
         Line_ColID = Col
         FunID = 0x03
         IRecognitionSettings()
@@ -624,6 +626,7 @@ namespace Quadruped {
      //% blockGap=8
      //% blockId=TogetherOn block="TogetherOn| %Col|Line|%Col2|Shape"
      export function TogetherOn(Col1: ColorLineID,Col2: ColorID): void { 
+	let i = 0     
         Line_ColID = Col1
         ShaColID = Col2
         FunID = 0x06 
