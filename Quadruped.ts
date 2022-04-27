@@ -566,10 +566,12 @@ namespace Quadruped {
         FunID = Fun
 	let i = 0
         IRecognitionSettings()
-	IRecognitionSettings()
 	while(1){
-		if(Identify_receive() == 1 || (i++)<10)
+		if(Identify_receive() == 1 || (i++)>10)
 			return 
+		IRecognitionSettings()
+		basic.pause(100)
+		
 	}	
 	    
     }
