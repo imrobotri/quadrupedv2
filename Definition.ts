@@ -349,7 +349,7 @@ function Identify_receive() {
     if (Identify_RX[0] == 0x01 && Identify_RX[1] == 0x03) {
         length_r = Identify_RX[2]
         usMBCRC16(Identify_RX, length_r + 3)
-	 basic.showNumber(CRC_H)     
+	 //basic.showNumber(CRC_H)     
         if (Identify_RX[length_r + 3] == CRC_H && Identify_RX[length_r + 4] == CRC_L) {
 		//颜色识别
 		Color_ID = Data_conversion(Identify_RX[cnt_I++],Identify_RX[cnt_I++])	
