@@ -640,6 +640,26 @@ namespace Quadruped {
 	}       
     }       
 
+    //TogetherOn 开启/切换巡线+颜色同是识别
+    /**
+     * IODO:At the same time, open the setting pattern recognition function line patrol + line patrol and the corresponding recognition color
+     * IODO:同时开启设置图形识别功能巡线+巡线以及对应识别颜色
+     */
+     //% subcategory=sensor
+     //% blockGap=8
+     //% blockId=TogetherOn1 block="TogetherOn1| %Col|Line|and color recognition"
+     export function TogetherOn1(Col1: ColorLineID): void { 
+	let i = 0     
+        Line_ColID = Col1
+        FunID = 0x07 
+        IRecognitionSettings()
+	IRecognitionSettings()
+	while(1){
+		if(Identify_receive() == 1 || (i++)<10)
+			return 
+	}       
+    } 
+	
     //###Tag code position return value||标签位置返回值
     /**
     * IODO: Returns the value of the Tag code set, flips the X, y, Z, XYZ axes (corresponding to the position and flip angle)
