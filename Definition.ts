@@ -349,7 +349,7 @@ function Identify_receive() {
     if (Identify_RX[0] == 0x01 && Identify_RX[1] == 0x03) {
         length_r = Identify_RX[2]
         usMBCRC16(Identify_RX, length_r + 3)
-	 basic.showNumber(1)     
+	 basic.showNumber(4)     
         if (Identify_RX[length_r + 3] == CRC_H && Identify_RX[length_r + 4] == CRC_L) {
 		//颜色识别
 		Color_ID = Data_conversion(Identify_RX[cnt_I++],Identify_RX[cnt_I++])	
@@ -377,22 +377,23 @@ function Identify_receive() {
     		Identify_Flip_y = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])   //
     		Identify_Flip_z = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])   //
 		
-		basic.showNumber(2)     
+		basic.showNumber(5)     
 		return 2
 		
         }
 	    //return 2
     }
    else if (Identify_RX[0] == 0x01 && Identify_RX[1] == 0x10) {
-	//basic.showNumber(2)   
+	basic.showNumber(6)    
 	//length_r = Identify_RX[2]
         usMBCRC16(Identify_RX, 6)
 	if (Identify_RX[6] == CRC_H && Identify_RX[7] == CRC_L) {   
-   		
+   		basic.showNumber(7)  
 		return 1
 		
 	}	
    }
+  basic.showNumber(8) 	
    return 0 
 }
 /*
