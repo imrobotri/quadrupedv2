@@ -564,8 +564,14 @@ namespace Quadruped {
      //% blockId=OnToggle block="OnToggle|%Fun"
     export function OnToggle(Fun:  FunctionID): void { 
         FunID = Fun
+	let i = 0
         IRecognitionSettings()
 	IRecognitionSettings()
+	while(1){
+		if(Identify_receive() == 1 || (i++)<10)
+			return 
+	}	
+	    
     }
 
 	//OnToggle1 开启/切换(小球、形状、巡线)
@@ -584,6 +590,10 @@ namespace Quadruped {
 	FunID = Fun     
         IRecognitionSettings()
 	IRecognitionSettings()
+	while(1){
+		if(Identify_receive() == 1 || (i++)<10)
+			return 
+	}     
     } 
     
  	//OnToggle2 开启/切换(巡线)
@@ -599,6 +609,10 @@ namespace Quadruped {
         FunID = 0x03
         IRecognitionSettings()
 	IRecognitionSettings()
+	while(1){
+		if(Identify_receive() == 1 || (i++)<10)
+			return 
+	}       
     }    
     
 	//TogetherOn 开启/切换巡线+形状同是识别
@@ -615,6 +629,10 @@ namespace Quadruped {
         FunID = 0x06 
         IRecognitionSettings()
 	IRecognitionSettings()
+	while(1){
+		if(Identify_receive() == 1 || (i++)<10)
+			return 
+	}       
     }       
 
     //###Tag code position return value||标签位置返回值
