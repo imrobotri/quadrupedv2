@@ -258,7 +258,7 @@ namespace Quadruped {
 		Action_group_status = 1
 	  }
 	  else{
-	  	Action_group_status = 1
+	  	Action_group_status = 0
 	  }
 	  SPI_Send()
 		  
