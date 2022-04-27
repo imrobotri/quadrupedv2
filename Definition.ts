@@ -375,9 +375,10 @@ function Identify_receive() {
     		Identify_Flip_x = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])   //
     		Identify_Flip_y = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])   //
     		Identify_Flip_z = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])   //
+		return 2
 		
         }
-	    return 2
+	    //return 2
     }
    else if (Identify_RX[0] == 0x01 && Identify_RX[1] < 0x10) {
 	length_r = Identify_RX[2]
