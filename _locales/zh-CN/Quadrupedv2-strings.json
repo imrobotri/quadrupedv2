@@ -30,6 +30,7 @@
     "Quadruped.Colorreturn|block": "颜色返回",
     "Quadruped.Shapereturn|block": "形状返回",
     "Quadruped.TogetherOn|block": "开启/切换|%Col1|巡线 |%Col2|形状同时识别功能",
+    "Quadruped.TogetherOn1|block": "开启/切换|%Col1|巡线和颜色同时识别功能",
     "Quadruped.OnToggle|block": "开启/切换|%Fun|识别功能",
     "Quadruped.OnToggle1|block": "开启/切换| %Col|%Fun|识别功能",
     "Quadruped.OnToggle2|block": "开启/切换| %Col|巡线识别功能",
