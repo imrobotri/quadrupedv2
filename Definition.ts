@@ -325,11 +325,11 @@ function Identify_send() {
     Identify_TX2[cnt_p++] = 0x01 // ID
     Identify_TX2[cnt_p++] = 0x03
     Identify_TX2[cnt_p++] = 0x00
-    Identify_TX2[cnt_p++] = Function_c
+    Identify_TX2[cnt_p++] = 0x0A //Function_c
     Identify_TX2[cnt_p++] = 0x00
-    Identify_TX2[cnt_p++] = 0x0A
-		for(let i = 0;i<cnt_p;i++)	
-		Identify_TX1[i+1] = Identify_TX2[i]
+    Identify_TX2[cnt_p++] = 0x1A
+    for(let i = 0;i<cnt_p;i++)	
+	Identify_TX1[i+1] = Identify_TX2[i]
     usMBCRC161(Identify_TX1, cnt_p+1)
     // serial.writeBuffer(Identify_TX)
     Identify_TX2[cnt_p++] = CRC_tx_H1
