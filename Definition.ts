@@ -381,6 +381,7 @@ function Identify_receive() {
 	    //return 2
     }
    else if (Identify_RX[0] == 0x01 && Identify_RX[1] == 0x10) {
+	basic.showNumber(2)   
 	length_r = Identify_RX[2]
         usMBCRC16(Identify_RX, length_r + 3)
 	if (Identify_RX[length_r + 3] == CRC_H && Identify_RX[length_r + 4] == CRC_L) {   
