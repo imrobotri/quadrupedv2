@@ -725,7 +725,11 @@ namespace Quadruped {
         Function_c = 0x0A
         Function_s = 1
         Identify_send()
-        Identify_receive()
+        //Identify_receive()
+	while(1){
+		if(Identify_receive() == 2 || (i++)<10)
+			return 
+	}    
         return Color_ID;
     }
 
