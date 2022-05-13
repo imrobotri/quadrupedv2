@@ -197,7 +197,7 @@ enum ColorID {
 
 //识别颜色ID
 enum ColorLineID { 
-    //% block="Red"
+    //% block="Black"
     Black = 1, 
     //% block="Red"
     Red = 2,    
