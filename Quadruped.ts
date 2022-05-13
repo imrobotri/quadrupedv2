@@ -164,8 +164,8 @@ namespace Quadruped {
     }
     //###gait||步态
     /**
-     * TODO:The robot has two gait options: trotting and crawling. (Note: Crawling gait can only be used when the fuselage is at its highest state)
-     * TODO:机器人两种步态选择：小跑和爬行。（注意：爬行步态只能在机身处于最高状态时使用）
+     * TODO:The robot has four gait options: trotting, crawling, slow diagonal and fast diagonal. (Note: Crawling gait can only be used when the fuselage is at its highest state)
+     * TODO:机器人四种步态选择：小跑、爬行、慢速对角、快速对角。（注意：爬行步态只能在机身处于最高状态时使用）
      */
     //% group="control"
     //% blockGap=8
