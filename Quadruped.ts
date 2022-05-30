@@ -551,6 +551,7 @@ namespace Quadruped {
     //% blockId=sensor_Image_ini block="Image recognition initialization"
     export function Image_init() {
         serial.setRxBufferSize(80)
+	serial.setTxBufferSize(8)    
 	    //serial.writeBuffer()
     }
 
