@@ -368,7 +368,7 @@ function Identify_receive() {
 		//形状
 		Shapes_ID = Data_conversion(Identify_RX[cnt_I++],Identify_RX[cnt_I++])       //
 		//标签
-		Identify_status = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])   //
+		//Identify_status = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])   //
    		Identify_pattern = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])  //
     		Identify_x = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])        //
     		Identify_y = Data_conversion(Identify_RX[cnt_I++], Identify_RX[cnt_I++])        //
