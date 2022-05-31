@@ -668,7 +668,7 @@ namespace Quadruped {
      */
      //% subcategory=sensor
      //% blockGap=8
-     //% blockId=TogetherOn1 block="TogetherOn1| %Col|Line|and color recognition"
+     //% blockId=TogetherOn2 block="TogetherOn2| %Col|Line|and AprilTag"
      export function TogetherOn2(Col1: ColorLineID): void { 
 	let i = 0     
         Line_ColID = Col1
