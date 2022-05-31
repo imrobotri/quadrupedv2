@@ -643,8 +643,8 @@ namespace Quadruped {
 
     //TogetherOn 开启/切换巡线+颜色同是识别
     /**
-     * IODO:Turn on the setting graphic recognition function, you can simultaneously patrol the line, the corresponding color recognition and other items of color recognition.
-     * IODO:开启设置图形识别功能，可同时进行巡线以及对应颜色的识别和其他物品的颜色识别。
+     * IODO:Turn on the setting pattern recognition function, which can perform line inspection and color recognition at the same time.
+     * IODO:开启设置图形识别功能，同时进行巡线以及颜色识别。
      */
      //% subcategory=sensor
      //% blockGap=8
@@ -660,6 +660,27 @@ namespace Quadruped {
 			return 
 	}       
     } 
+
+    //TogetherOn 开启/切换巡线+AprilTag同时识别
+    /**
+     * IODO:Enable setting pattern recognition function, and perform line patrol and AprilTag label recognition at the same time.
+     * IODO:开启设置图形识别功能，同时进行巡线以及AprilTag标签识别。
+     */
+     //% subcategory=sensor
+     //% blockGap=8
+     //% blockId=TogetherOn1 block="TogetherOn1| %Col|Line|and color recognition"
+     export function TogetherOn2(Col1: ColorLineID): void { 
+	let i = 0     
+        Line_ColID = Col1
+        FunID = 0x08 
+        IRecognitionSettings()
+	IRecognitionSettings()
+	while(1){
+		if(Identify_receive() == 1 || (i++)<10)
+			return 
+	}       
+    }	
+
 	
     //###Tag code position return value||标签位置返回值
     /**
