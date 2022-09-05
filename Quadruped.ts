@@ -540,7 +540,7 @@ namespace Quadruped {
     * IODO:图像识别功能的内部相关引脚和设置初始化
     */
     //% subcategory=sensor
-    //% blockGap=8
+    //% blockGap=21
     //% blockId=sensor_Image_in block="Image recognition "
     export function Image_init() {
         serial.setRxBufferSize(32)
@@ -553,7 +553,7 @@ namespace Quadruped {
      * IODO:开启设置图形的颜色或者标签识别功能。
      */
     //% subcategory=sensor
-    //% blockGap=8
+    //% blockGap=13
     //% blockId=Toggle block="Toggle|%Ena"
     export function Toggle(Ena: EnabledID): void {
         Function_ID = Ena
@@ -569,7 +569,7 @@ namespace Quadruped {
      * IODO:开启设置图形识别功能，可以选择小球和形状以及对应识别颜色。
      */
     //% subcategory=sensor
-    //% blockGap=8
+    //% blockGap=15
     //% blockId=Toggle1 block="Toggle1| %Col|%Ena1"
     export function Toggle1(Col: Colorchoose, Ena1: EnabledID1): void {
         Color_id = Col
@@ -584,7 +584,7 @@ namespace Quadruped {
      * IODO:开启设置图形识别功能，进行红色线或者黑色线的识别。
      */
     //% subcategory=sensor
-    //% blockGap=8
+    //% blockGap=14
     //% blockId=Toggle2 block="Toggle2| %Col|Line"
     export function Toggle2(Col: LineColorchoose): void {
         Function_ID = 0x03
@@ -600,7 +600,7 @@ namespace Quadruped {
      * IODO:开启设置图形识别功能，进行巡线及其颜色的识别，同时有形状及其颜色的识别。
      */
     //% subcategory=sensor
-    //% blockGap=8
+    //% blockGap=16
     //% blockId=Together block="Together| %Col1|Line|%Col2|Shape"
     export function Together(Col1: LineColorchoose, Col2: Colorchoose): void {
         Function_ID = 0x06
@@ -617,7 +617,7 @@ namespace Quadruped {
      * IODO:开启设置图形识别功能，同时进行巡线以及颜色识别。
      */
     //% subcategory=sensor
-    //% blockGap=8
+    //% blockGap=17
     //% blockId=Together1 block="Together1| %Col1|Line|and Color"
     export function Together1(Col1: LineColorchoose): void {
         Function_ID = 0x07
@@ -633,7 +633,7 @@ namespace Quadruped {
      * IODO:开启设置图形识别功能，同时进行巡线以及AprilTag标签识别。
      */
     //% subcategory=sensor
-    //% blockGap=8
+    //% blockGap=18
     //% blockId=Together2 block="Together2| %Col1|Line|and Tag"
     export function Together2(Col1: LineColorchoose): void {
         Function_ID = 0x08
@@ -648,7 +648,7 @@ namespace Quadruped {
      * IODO:开启设置图形识别功能，进行巡线及其颜色的识别，同时有形状及其颜色和AprilTag标签的识别。
      */
     //% subcategory=sensor
-    //% blockGap=8
+    //% blockGap=19
     //% blockId=Together3 block="Together3| %Col1|Line|%Col2|Shape|and Tag"
     export function Together3(Col1: LineColorchoose, Col2: Colorchoose): void {
         Function_ID = 0x09
@@ -665,7 +665,7 @@ namespace Quadruped {
     *
     */
     //% subcategory=sensor
-    //% blockGap=8
+    //% blockGap=9
     //% blockId=ColorRecogniti block="Color Recognition return value"
     export function Colorreturn(): number {
         Uart_receive()
@@ -681,7 +681,7 @@ namespace Quadruped {
     * IODO:返回小球的位置信息。识别状态1表示已识别，0表示未识别；图像中小球中心的X、Y轴位置；小球的XY二维宽高，以及识别效果（识别效果越高，小球的距离越近）。返回值类型：int。
     */
     //% subcategory=sensor
-    //% blockGap=8
+    //% blockGap=10
     //% blockId=sensor_Ball_return block="Ball return value| %P"
     export function Ball_return(P: Ball_Position): number {
         Uart_receive()
@@ -704,7 +704,7 @@ namespace Quadruped {
     * IODO:机器人巡线状态返回（0：未识别到线，1：识别到线）。识别效果：识别线像素值大小为0-19200，偏差角度范围（-90°~90°），偏差 X 轴位置 范围(- 160~160) 。
     */
     //% subcategory=sensor
-    //% blockGap=8
+    //% blockGap=11
     //% blockId=Line_return block="Line patrol return value| %X"
     export function Line_return(X: Line_Position): number {
         Uart_receive()
@@ -737,7 +737,7 @@ namespace Quadruped {
     * IODO:返回Tag码集的位置值，翻转X、Y、Z轴对应位置及X、Y、Z轴的翻转角度。
     */
     //% subcategory=sensor
-    //% blockGap=8
+    //% blockGap=12
     //% blockId=Tag_return block="Tag code position return value| %data"
     export function Tag_return(data: Tag_Position): number {
         Uart_receive()
