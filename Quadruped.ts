@@ -1,11 +1,10 @@
-
 /**
  * Quadruped
  */
 //% weight= 0 color=#0abcff icon="\uf201" block="Quadruped"
 //% groups='["Set up","control","Additional steering gear control","Joint angle control"]'
 namespace Quadruped {
-/* ***********************************************基本控制***************************************** */
+
     /**
      *TODO: Defines the initialization of the communication pins of the microbit and the adapter board, and requires initialization before invoking basic control, external servo control, and joint control. Microbit's LED dot matrix screen will not be available after initialization.
      *TODO:定义microbit和转接板的通讯引脚的初始化，且在调用基本控制、外接舵机控制和关节控制前都需进行初始化。初始化后microbit的LED点阵屏将无法使用。
@@ -37,8 +36,8 @@ namespace Quadruped {
     //% blockId=Quadruped_Action_Status block="Action_Status"
     export function Action_Status(): number {
         return M_Action_group_status;
-    }
-
+    }	
+	
     //####Reset||复位
     /**
      *TODO:The robot's movement speed and attitude angle are reset to 0.
@@ -68,11 +67,12 @@ namespace Quadruped {
     //% blockId=Quadruped_Height block="Height %h"
     export function Height(h: number): void {
         rc_pos_cmd = h * 0.1
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 10; i++)
+        {
             SPI_Send()
             basic.pause(100)
         }
-
+        
     }
     //###Start||启动
     /**
@@ -151,7 +151,7 @@ namespace Quadruped {
     //% blockGap=8
     //% blockId=Quadruped_Stop block="Stop"
     export function Stop(): void {
-        if (robot_mode == 0x04 || robot_mode == 0x06) {
+        if (robot_mode == 0x04||robot_mode == 0x06) {
             Standing()
         }
         if (robot_mode == 1 || robot_mode == 0X02) {
@@ -184,10 +184,11 @@ namespace Quadruped {
                 }
             case gait.Crawl:
                 rc_pos_cmd = 1
-                for (let i = 0; i < 5; i++) {
+                for (let i = 0; i < 5; i++)
+                {
                     SPI_Send()
                     basic.pause(100)
-                }
+                    }
                 gait_mode = 0x03;
                 while (1) {
                     SPI_Send()
@@ -195,28 +196,30 @@ namespace Quadruped {
                         SPI_Send()
                         //serial.writeNumber(2)
                         return
-                    }
+                   }
                 }
             case gait.S_TROT:
                 rc_pos_cmd = 1
-                for (let i = 0; i < 5; i++) {
+                for (let i = 0; i < 5; i++)
+                {
                     SPI_Send()
                     basic.pause(100)
-                }
+                    }
                 gait_mode = 0x0D;
                 while (1) {
                     SPI_Send()
                     if (robot_mode == 0x0D) {
                         SPI_Send()
                         return
-                    }
+                   }
                 }
             case gait.F_TROT:
                 rc_pos_cmd = 1
-                for (let i = 0; i < 5; i++) {
+                for (let i = 0; i < 5; i++)
+                {
                     SPI_Send()
                     basic.pause(100)
-                }
+                    }
                 gait_mode = 0x01;
                 while (1) {
                     SPI_Send()
@@ -225,20 +228,20 @@ namespace Quadruped {
                         //serial.writeNumber(2)
                         break
                     }
-                }
+                }			
                 gait_mode = 0x02;
                 while (1) {
                     SPI_Send()
                     if (robot_mode == 0x05) {
                         SPI_Send()
                         return
-                    }
-                }
+                   }
+                }			
         }
         SPI_Send()
     }
-
-
+	
+	
     //###Action group||动作组
     /**
     * TODO:Robot action group selection and whether to enable the call, currently stored two action groups.
@@ -250,16 +253,16 @@ namespace Quadruped {
     //% time1.min=0 time1.max=255
     //% blockId=Quadruped_Action_groups block="Action group|%Group|state %sta"
     export function Action_groups(Group: number, sta: Actions): void {
-        Action_group = Group
-        if (sta == Actions.Enable) {
-            Action_group_status = 1
-        }
-        else {
-            Action_group_status = 0
-        }
-        SPI_Send()
-
-
+	  Action_group =   Group
+	  if(sta == Actions.Enable){
+		Action_group_status = 1
+	  }
+	  else{
+	  	Action_group_status = 0
+	  }
+	  SPI_Send()
+		  
+		  
     }
     //###Movement direction and speed||运动方向与速度
     /**
@@ -274,7 +277,7 @@ namespace Quadruped {
     export function Control_s(m: Mov_dir, speed1: number, time1: number): void {
         let Sum_S = 0.00
         let time_ms = 0
-        let time_s = time1 * 1000
+        let time_s = time1*1000
         let time_start = 0
         Sum_S = speed1 / 100.00
         SPI_Send()
@@ -297,10 +300,10 @@ namespace Quadruped {
         //    basic.pause(1000)
         //}
         time_start = input.runningTime()
-        while (1) {
+        while(1){
             time_ms = input.runningTime() - time_start
             SPI_Send()
-            if (time_s <= time_ms)
+            if(time_s <= time_ms)
                 return
         }
     }
@@ -316,7 +319,7 @@ namespace Quadruped {
     //% blockId=Quadruped_Control_a block="Control angle |%m|angle_size %angle1|time %time1"
     export function Control_a(m: Mov_ang, angle1: number, time1: number): void {
         let time_ms = 0
-        let time_s = time1 * 1000
+        let time_s = time1*1000
         let time_start = 0
         switch (m) {
             case Mov_ang.Look_d:
@@ -347,47 +350,46 @@ namespace Quadruped {
         //    basic.pause(1000)
         //}
         time_start = input.runningTime()
-        while (1) {
+        while(1){
             time_ms = input.runningTime() - time_start
             SPI_Send()
-            if (time_s <= time_ms)
+            if(time_s <= time_ms)
                 return
         }
-
+        
     }
-//     
-//     //###Joint angle control||关节控制
-//     /**
-//     * TODO:The robot can choose the corresponding leg, joint angle, and whether to execute the command of the current block.
-//     * TODO:机器人可以选择对应的腿、关节角度以及是否执行当前积木的命令。
-//     */
-//     //% group="Joint angle control"
-//     //% blockGap=9
-//     //% blockId=Quadruped_Joint block="Joint angle control | %j|thigh %d|Calf %x|Side led %c| %site "
-//     export function Joint(j: Joints, d: number, x: number, c: number, site: sIte): void {
-//         switch (j) {
-//             case Joints.Left_fr: FL_d = d; FL_x = x; FL_c = c; break;
-//             case Joints.Left_hi: HL_d = d; HL_x = x; HL_c = c; break
-//             case Joints.Right_fr: FR_d = d; FR_x = x; FR_c = c; break
-//             case Joints.Right_hi: HR_d = d; HR_x = x; HR_c = c; break
-//         }
-//         if (site = 1)
-//             Joint_SPI_Send()
-//     }
 
-//     //###Joint Heartbeat||关节心跳
-//     /**
-//     * TODO:Constantly send the command information set up in the previous step to the robot to prevent the loss of machine communication.
-//     * TODO:不断发送上一步设置的命令信息给机器人，防止机器通讯丢失。
-//     */
-//     //% group="Joint angle control"
-//     //% blockGap=8
-//     //% blockId=Joint_Heartbeat block="Joint Heartbeat"
-//     export function Joint_Heartbeat(): void {
-//         Joint_SPI_Send()
-//     }
-//     
-/* ***********************************************传感器***************************************** */
+    //###Joint angle control||关节控制
+    /**
+    * TODO:The robot can choose the corresponding leg, joint angle, and whether to execute the command of the current block.
+    * TODO:机器人可以选择对应的腿、关节角度以及是否执行当前积木的命令。
+    */
+    //% group="Joint angle control"
+    //% blockGap=9
+    //% blockId=Quadruped_Joint block="Joint angle control | %j|thigh %d|Calf %x|Side led %c| %site "
+    export function Joint(j: Joints, d: number, x: number, c: number, site: sIte): void {
+        switch (j) {
+            case Joints.Left_fr: FL_d = d; FL_x = x; FL_c = c; break;
+            case Joints.Left_hi: HL_d = d; HL_x = x; HL_c = c; break
+            case Joints.Right_fr: FR_d = d; FR_x = x; FR_c = c; break
+            case Joints.Right_hi: HR_d = d; HR_x = x; HR_c = c; break
+        }
+        if (site = 1)
+            Joint_SPI_Send()
+    }
+
+    //###Joint Heartbeat||关节心跳
+    /**
+    * TODO:Constantly send the command information set up in the previous step to the robot to prevent the loss of machine communication.
+    * TODO:不断发送上一步设置的命令信息给机器人，防止机器通讯丢失。
+    */
+    //% group="Joint angle control"
+    //% blockGap=8
+    //% blockId=Joint_Heartbeat block="Joint Heartbeat"
+    export function Joint_Heartbeat(): void {
+            Joint_SPI_Send()
+    }
+
 
     //###Ultrasound||超声波
     /**
@@ -395,7 +397,7 @@ namespace Quadruped {
     * TODO:选择机器人超声波模块对应的发射和接收引脚，并选择返回数据的单位。
     */
     //% subcategory=sensor
-    //% blockGap=19
+    //% blockGap=8
     //% blockId=sensor_Model block="Ultrasound |tr %trig |re %echo | unit %unit"
     export function Ultrasound(trig: DigitalPin, echo: DigitalPin, unit: Unit, maxCmDistance = 500): number {
         // send pulse
@@ -420,7 +422,7 @@ namespace Quadruped {
      * TODO:机器人选择红外传感器的数据接收引脚，状态返回值0代表有障碍物，1代表未识别到障碍物。
      */
     //% subcategory=sensor
-    //% blockGap=14
+    //% blockGap=8
     //% blockId=sensor_Infrared block="Infrared |mode %value |pin %pin"
     export function Infrared(pin: DigitalPin): number {
         pins.setPull(pin, PinPullMode.PullUp);
@@ -432,9 +434,9 @@ namespace Quadruped {
     * TODO:机器人选择人体感应器的数据接收引脚，状态返回值0代表未识别到人体，1代表识别到人体。
     */
     //% subcategory=sensor
-    //% blockGap=15
+    //% blockGap=8
     //% blockId=sensor_Human_Infrared block="Human Infrared|pin|%pin"
-    export function Human_induction(pin: AnalogPin, value = 50): number {
+    export function Human_induction(pin: AnalogPin, value=50): number {
         let w = pins.analogReadPin(pin)
         if (w >= value)
             return 1
@@ -446,7 +448,7 @@ namespace Quadruped {
     * IODO:手势相关引脚、配置设置（成功：0 失败：255）
     */
     //% subcategory=sensor
-    //% blockGap=16
+    //% blockGap=8
     //% blockId=sensor_GestureInit block="GestureInit"
     export function GestureInit(): number {
         basic.pause(800);//等待芯片稳定
@@ -468,7 +470,7 @@ namespace Quadruped {
     * IODO:返回手势方向的值
     */
     //% subcategory=sensor
-    //% blockGap=17
+    //% blockGap=8
     //% blockId=sensor_GetGesture block="GetGesture"
     export function GetGesture(): number {
 
@@ -500,7 +502,7 @@ namespace Quadruped {
     * IODO:定义手势的方向并设置为一个值。
     */
     //% subcategory=sensor
-    //% blockGap=18
+    //% blockGap=8
     //% blockId=sensor_Select_gesture_as block="Select_gesture_as | %state"
     export function Select_gesture_as(state: gesture): number {
         return state;
@@ -533,146 +535,178 @@ namespace Quadruped {
 
         SG_SPI_Send()
     }
-/* ***********************************************图像识别***************************************** */
-    //###Image recognition ||图像识别初始化
+
+
+  
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //###Image recognition initialization||图像识别初始化
     /**
-    * IODO:Initialization of internally relevant pins and settings for image recognition.
-    * IODO:图像识别功能的内部相关引脚和设置初始化
+    * IODO:Image recognition internal related pins and settings initialization
+    * IODO:图像识别内部相关引脚和设置初始化
     */
     //% subcategory=sensor
-    //% blockGap=1
-    //% blockId=sensor_Image_in block="Image recognition "
+    //% blockGap=8
+    //% blockId=sensor_Image_ini block="Image recognition initialization"
     export function Image_init() {
-        serial.setRxBufferSize(32)
+        serial.setRxBufferSize(80)
+	serial.setTxBufferSize(8)    
+	    //serial.writeBuffer()
     }
 
-
-    //Toggle 开启/切换(颜色、标签)
+	//OnToggleIdentify 开启/切换(颜色、标签、二维码)
     /**
      * IODO: Turn on the color or label recognition function for setting graphics.
      * IODO:开启设置图形的颜色或者标签识别功能。
      */
-    //% subcategory=sensor
-    //% blockGap=2
-    //% blockId=Toggle block="Toggle|%Ena"
-    export function Toggle(Ena: EnabledID): void {
-        Function_ID = Ena
-        Uart_sent()
-       // Reset()
-
+     //% subcategory=sensor
+     //% blockGap=8
+     //% blockId=OnToggle block="OnToggle|%Fun"
+    export function OnToggle(Fun:  FunctionID): void { 
+        FunID = Fun
+	let i = 0
+        IRecognitionSettings()
+	while(1){
+		if(Identify_receive() == 1 )//|| (i++)>10
+			return 
+		IRecognitionSettings()
+		basic.pause(100)
+		
+	}	
+	    
     }
 
-
-    //Toggle1 开启/切换(小球、形状)
+	//OnToggle1 开启/切换(小球、形状、巡线)
     /**
-     * IODO:Turn on the Settings Graphic Recognition function to select balls and shapes,  as well as the corresponding recognition colors.
-     * IODO:开启设置图形识别功能，可以选择小球和形状以及对应识别颜色。
+     * IODO:Turn on the Settings Graphic Recognition function to select balls, shapes, and lines, as well as the corresponding recognition colors.
+     * IODO:开启设置图形识别功能，可以选择小球、形状和线以及对应识别颜色。
      */
-    //% subcategory=sensor
-    //% blockGap=4
-    //% blockId=Toggle1 block="Toggle1| %Col|%Ena1"
-    export function Toggle1(Col: Colorchoose, Ena1: EnabledID1): void {
-        Color_id = Col
-        Function_ID = Ena1
-        Uart_sent()
-        //Reset()    //复位
-    }
-
-    //Toggle2 开启/切换(巡线)
+     //% subcategory=sensor
+     //% blockGap=8
+     //% blockId=OnToggle1 block="OnToggle1| %Col|%Fun"
+     export function OnToggle1(Col: ColorID,Fun:  FunctionID1): void { 
+	let i = 0     
+	if(Fun == 2){     
+       		ColID = Col
+	}
+	ShaColID  = Col   
+	FunID = Fun     
+        IRecognitionSettings()
+	IRecognitionSettings()
+	while(1){
+		if(Identify_receive() == 1 || (i++)<10)
+			return 
+	}     
+    } 
+    
+ 	//OnToggle2 开启/切换(巡线)
     /**
      * IODO:Turn on the settings graphic recognition function to identify red or black lines.
      * IODO:开启设置图形识别功能，进行红色线或者黑色线的识别。
      */
-    //% subcategory=sensor
-    //% blockGap=3
-    //% blockId=Toggle2 block="Toggle2| %Col|Line"
-    export function Toggle2(Col: LineColorchoose): void {
-        Function_ID = 0x03
-        Linecolor_id = Col
-        Uart_sent()
-        //Reset()    //复位
-    }
-
-
-    //Together 开启/切换巡线+形状同时识别
+     //% subcategory=sensor
+     //% blockGap=8
+     //% blockId=OnToggle2 block="OnToggle2| %Col|Line"
+     export function OnToggle2(Col: ColorLineID): void { 
+	let i = 0     
+        Line_ColID = Col
+        FunID = 0x03
+        IRecognitionSettings()
+	IRecognitionSettings()
+	while(1){
+		if(Identify_receive() == 1 || (i++)<10)
+			return 
+	}       
+    }    
+    
+	//TogetherOn 开启/切换巡线+形状同是识别
     /**
      * IODO:Turn on the graphic recognition function to identify the line and its color, and at the same time identify the shape and its color.
      * IODO:开启设置图形识别功能，进行巡线及其颜色的识别，同时有形状及其颜色的识别。
      */
-    //% subcategory=sensor
-    //% blockGap=5
-    //% blockId=Together block="Together| %Col1|Line|%Col2|Shape"
-    export function Together(Col1: LineColorchoose, Col2: Colorchoose): void {
-        Function_ID = 0x06
-        Linecolor_id = Col1
-        Color_id = Col2
-        Uart_sent()
-        //Reset()    //复位
-    }
+     //% subcategory=sensor
+     //% blockGap=8
+     //% blockId=TogetherOn block="TogetherOn| %Col|Line|%Col2|Shape"
+     export function TogetherOn(Col1: ColorLineID,Col2: ColorID): void { 
+	let i = 0     
+        Line_ColID = Col1
+        ShaColID = Col2
+        FunID = 0x06 
+        IRecognitionSettings()
+	IRecognitionSettings()
+	while(1){
+		if(Identify_receive() == 1 || (i++)<10)
+			return 
+	}       
+    }       
 
-
-    //Together1 开启/切换巡线+颜色同时识别
+    //TogetherOn 开启/切换巡线+颜色同是识别
     /**
      * IODO:Turn on the setting pattern recognition function, which can perform line inspection and color recognition at the same time.
      * IODO:开启设置图形识别功能，同时进行巡线以及颜色识别。
      */
-    //% subcategory=sensor
-    //% blockGap=6
-    //% blockId=Together1 block="Together1| %Col1|Line|and Color"
-    export function Together1(Col1: LineColorchoose): void {
-        Function_ID = 0x07
-        Linecolor_id = Col1
-        Uart_sent()
-        //Reset()    //复位
-    }
+     //% subcategory=sensor
+     //% blockGap=8
+     //% blockId=TogetherOn1 block="TogetherOn1| %Col|Line|and color recognition"
+     export function TogetherOn1(Col1: ColorLineID): void { 
+	let i = 0     
+        Line_ColID = Col1
+        FunID = 0x07 
+        IRecognitionSettings()
+	IRecognitionSettings()
+	while(1){
+		if(Identify_receive() == 1 || (i++)<10)
+			return 
+	}       
+    } 
 
-
-    //Together2 开启/切换巡线+标签同时识别
+    //TogetherOn 开启/切换巡线+AprilTag同时识别
     /**
      * IODO:Enable setting pattern recognition function, and perform line patrol and AprilTag label recognition at the same time.
      * IODO:开启设置图形识别功能，同时进行巡线以及AprilTag标签识别。
      */
-    //% subcategory=sensor
-    //% blockGap=7
-    //% blockId=Together2 block="Together2| %Col1|Line|and Tag"
-    export function Together2(Col1: LineColorchoose): void {
-        Function_ID = 0x08
-        Linecolor_id = Col1
-        Uart_sent()
-        //Reset()    //复位
-    }
+     //% subcategory=sensor
+     //% blockGap=8
+     //% blockId=TogetherOn2 block="TogetherOn2| %Col|Line|and AprilTag"
+     export function TogetherOn2(Col1: ColorLineID): void { 
+	let i = 0     
+        Line_ColID = Col1
+        FunID = 0x08 
+        IRecognitionSettings()
+	IRecognitionSettings()
+	while(1){
+		if(Identify_receive() == 1 || (i++)<10)
+			return 
+	}       
+    }	
 
-    //Together3 开启/切换巡线+形状+标签同时识别
+	
+    //###Tag code position return value||标签位置返回值
     /**
-     * IODO:Turn on the setting graphic recognition function to identify the line and its color, and at the same time identify the shape and its color and the AprilTag tag.
-     * IODO:开启设置图形识别功能，进行巡线及其颜色的识别，同时有形状及其颜色和AprilTag标签的识别。
-     */
-    //% subcategory=sensor
-    //% blockGap=8
-    //% blockId=Together3 block="Together3| %Col1|Line|%Col2|Shape|and Tag"
-    export function Together3(Col1: LineColorchoose, Col2: Colorchoose): void {
-        Function_ID = 0x09
-        Linecolor_id = Col1
-        Color_id = Col2
-        Uart_sent()
-        //Reset()    //复位
-    }
-
-    //###ColorRecognitionreturn||颜色返回
-    /**
-    * IODO:The robot recognizes the color and returns a 16-bit number. (1: red, 2: blue, 3: both red and black, 4: yellow, 5: both red and yellow, 6: both yellow and blue, 7: red, blue and yellow at the same time, 8: green,9: both red and green)
-    * IODO:机器人识别颜色并返回16bit数字。（1：红色，2：蓝色，3：同时有红色和黑色，4：黄色，5：同时有红色和黄色，6：同时有黄色和蓝色，7：同时有红蓝黄三色，8：绿色，9：同时有红色和绿色）
-    *
+    * IODO:Returns the position value of the Tag code set, flips the corresponding position of the X, Y, and Z axes, and the flip angle of the X, Y, and Z axes.
+    * IODO:返回Tag码集的位置值，翻转X、Y、Z轴对应位置及X、Y、Z轴的翻转角度。
     */
     //% subcategory=sensor
-    //% blockGap=9
-    //% blockId=ColorRecogniti block="Color Recognition return value"
-    export function Colorreturn(): number {
-        Uart_receive()
-        return Color_id
-
+    //% blockGap=8
+    //% blockId=sensor_Tag_return block="Tag code position return value| %data"
+    export function Tag_return(data: Position): number {
+        Function_c = 0x2D
+        Function_s = 2
+        Identify_send()
+        Identify_receive()
+        switch (data) {
+            case Position.Content_V: return Identify_pattern; break;
+            case Position.X_axis: return Identify_x; break;
+            case Position.Y_axis: return Identify_x; break;
+            case Position.Z_axis: return Identify_x; break;
+            case Position.X_flip: return Identify_x; break;
+            case Position.Y_flip: return Identify_x; break;
+            case Position.Z_flip: return Identify_x; break;
+            default: return 255
+        }
     }
-
+    
 
 
     //###Ball return value||小球返回值
@@ -681,12 +715,15 @@ namespace Quadruped {
     * IODO:返回小球的位置信息。识别状态1表示已识别，0表示未识别；图像中小球中心的X、Y轴位置；小球的XY二维宽高，以及识别效果（识别效果越高，小球的距离越近）。返回值类型：int。
     */
     //% subcategory=sensor
-    //% blockGap=11
-    //% blockId=sensor_Ball_return block="Ball return value| %P"
+    //% blockGap=8
+    //% blockId=sensor_Ball_return block="Ball returnvalue| %P"
     export function Ball_return(P: Ball_Position): number {
-        Uart_receive()
+        Function_c = 0x0F
+        Function_s = 3
+        Identify_send()
+        Identify_receive()
         switch (P) {
-            case Ball_Position.Status: return Ball_status
+            case Ball_Position.status: return Ball_status
             case Ball_Position.X_axis: return Ball_X
             case Ball_Position.Y_axis: return Ball_Y
             case Ball_Position.Width: return Ball_W
@@ -697,19 +734,21 @@ namespace Quadruped {
 
     }
 
-
     //###Line patrol return||巡线返回
     /**
     * IODO:Robot line patrol status returns (0: not recognized to line, 1: recognized to line). Recognition effect: The pixel value of the recognition line is 0-19200, the deviation angle range (-90 ° ~ 90 °), the deviation X axis position range (- 160 ~ 160).
     * IODO:机器人巡线状态返回（0：未识别到线，1：识别到线）。识别效果：识别线像素值大小为0-19200，偏差角度范围（-90°~90°），偏差 X 轴位置 范围(- 160~160) 。
     */
     //% subcategory=sensor
-    //% blockGap=12
-    //% blockId=Line_return block="Line patrol return value| %X"
+    //% blockGap=8
+    //% blockId=sensor_Line_return block="Line patrol return value| %x"
     export function Line_return(X: Line_Position): number {
-        Uart_receive()
+        Function_c = 0x19
+        Function_s = 4
+        Identify_send()
+        Identify_receive()
         switch (X) {
-            case Line_Position.Status: return Line_detect;
+            case Line_Position.status: return Line_detect;
             case Line_Position.Re_effect: return Line_effect;
             case Line_Position.De_angle: return Line_angle;
             case Line_Position.De_position: return Line_position;
@@ -717,39 +756,45 @@ namespace Quadruped {
         }
     }
 
+    //###ColorRecognitionreturn||颜色返回
+    /**
+    * IODO:The robot recognizes the color and returns a 16-bit number. (1: red, 2: blue, 3: both red and black, 4: yellow, 5: both red and yellow, 6: both yellow and blue, 7: red, blue and yellow at the same time, 8: green, 9: both red and green)
+    * IODO:机器人识别颜色并返回16bit数字。（1：红色，2：蓝色，3：同时有红色和黑色，4：黄色，5：同时有红色和黄色，6：同时有黄色和蓝色，7：同时有红蓝黄三色，8：绿色，9：同时有红色和绿色）
+    * 
+    */
+    //% subcategory=sensor
+    //% blockGap=8
+    //% blockId=ColorRecognition block="Color Recognition return value"
+    export function Colorreturn(): number {
+        Function_c = 0x0A
+        Function_s = 1
+	let i =0 
+        Identify_send()
+        Identify_receive()
+	//while(1){
+	//	Identify_send()
+	//	if(Identify_receive() == 2 || (i++)>10)
+	//		break
+	//}    
+        return Color_ID;
+    }
 
     //###ShapeRecognitionreturn||形状返回
     /**
-    * IODO:Recognized shape returns 0~3 numbers (0: none, 1: triangle, 2: rectangle, 3: circle)
-    * IODO:识别形状返回0~3数字（0：无、1：三角形、2：矩形、3：圆形）
+    * IODO:The robot recognizes the shape and returns a numeric range of 0 to 3. (0: None:, 1: Triangle, 2: Rectangle, 3: Circle)
+    * IODO:机器人识别形状并返回0~3的数字范围。（0：无：，1：三角形，2：矩形，3：圆形）
     */
     //% subcategory=sensor
-    //% blockGap=10
-    //% blockId=Shape_return block="shape recognition return value"
-    export function Shape_return(): number {
-        Uart_receive()
-        return Shape_ID
+    //% blockGap=8
+    //% blockId=ShapeRecognition block="shape recognition returns"
+    export function Shapereturn(): number {
+        Function_c = 0x19
+        Function_s = 5
+        Identify_send()
+        Identify_receive()
+        return Shapes_ID;
     }
 
-    //###Tag code position return value||标签位置返回值
-    /**
-    * IODO:Returns the position value of the Tag code set, flips the corresponding position of the X, Y, and Z axes, and the flip angle of the X, Y, and Z axes.
-    * IODO:返回Tag码集的位置值，翻转X、Y、Z轴对应位置及X、Y、Z轴的翻转角度。
-    */
-    //% subcategory=sensor
-    //% blockGap=13
-    //% blockId=Tag_return block="Tag code position return value| %data"
-    export function Tag_return(data: Tag_Position): number {
-        Uart_receive()
-        switch (data) {
-            case Tag_Position.Content_V: return Identity_pattern;
-            case Tag_Position.X_axis: return Identity_x;
-            case Tag_Position.Y_axis: return Identity_y;
-            case Tag_Position.Z_axis: return Identity_z;
-            case Tag_Position.X_flip: return Identity_Flip_x;
-            case Tag_Position.Y_flip: return Identity_Flip_y;
-            case Tag_Position.Z_flip: return Identity_Flip_y;
-            default: return 255
-        }
-    }
+
+
 }
