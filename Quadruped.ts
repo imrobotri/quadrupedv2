@@ -4,7 +4,7 @@
 //% weight= 0 color=#0abcff icon="\uf201" block="Quadruped"
 //% groups='["Set up","control","Additional steering gear control","Joint angle control"]'
 namespace Quadruped {
-
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
      *TODO: Defines the initialization of the communication pins of the microbit and the adapter board, and requires initialization before invoking basic control, external servo control, and joint control. Microbit's LED dot matrix screen will not be available after initialization.
      *TODO:定义microbit和转接板的通讯引脚的初始化，且在调用基本控制、外接舵机控制和关节控制前都需进行初始化。初始化后microbit的LED点阵屏将无法使用。
