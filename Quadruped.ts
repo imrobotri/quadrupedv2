@@ -355,7 +355,7 @@ namespace Quadruped {
         }
 
     }
-
+    /*
     //###Joint angle control||关节控制
     /**
     * TODO:The robot can choose the corresponding leg, joint angle, and whether to execute the command of the current block.
@@ -386,7 +386,7 @@ namespace Quadruped {
     export function Joint_Heartbeat(): void {
         Joint_SPI_Send()
     }
-
+    */
 /* ***********************************************传感器***************************************** */
 
     //###Ultrasound||超声波
