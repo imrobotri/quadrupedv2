@@ -355,38 +355,38 @@ namespace Quadruped {
         }
 
     }
-    /*
-    //###Joint angle control||关节控制
-    /**
-    * TODO:The robot can choose the corresponding leg, joint angle, and whether to execute the command of the current block.
-    * TODO:机器人可以选择对应的腿、关节角度以及是否执行当前积木的命令。
-    */
-    //% group="Joint angle control"
-    //% blockGap=9
-    //% blockId=Quadruped_Joint block="Joint angle control | %j|thigh %d|Calf %x|Side led %c| %site "
-    export function Joint(j: Joints, d: number, x: number, c: number, site: sIte): void {
-        switch (j) {
-            case Joints.Left_fr: FL_d = d; FL_x = x; FL_c = c; break;
-            case Joints.Left_hi: HL_d = d; HL_x = x; HL_c = c; break
-            case Joints.Right_fr: FR_d = d; FR_x = x; FR_c = c; break
-            case Joints.Right_hi: HR_d = d; HR_x = x; HR_c = c; break
-        }
-        if (site = 1)
-            Joint_SPI_Send()
-    }
+//     
+//     //###Joint angle control||关节控制
+//     /**
+//     * TODO:The robot can choose the corresponding leg, joint angle, and whether to execute the command of the current block.
+//     * TODO:机器人可以选择对应的腿、关节角度以及是否执行当前积木的命令。
+//     */
+//     //% group="Joint angle control"
+//     //% blockGap=9
+//     //% blockId=Quadruped_Joint block="Joint angle control | %j|thigh %d|Calf %x|Side led %c| %site "
+//     export function Joint(j: Joints, d: number, x: number, c: number, site: sIte): void {
+//         switch (j) {
+//             case Joints.Left_fr: FL_d = d; FL_x = x; FL_c = c; break;
+//             case Joints.Left_hi: HL_d = d; HL_x = x; HL_c = c; break
+//             case Joints.Right_fr: FR_d = d; FR_x = x; FR_c = c; break
+//             case Joints.Right_hi: HR_d = d; HR_x = x; HR_c = c; break
+//         }
+//         if (site = 1)
+//             Joint_SPI_Send()
+//     }
 
-    //###Joint Heartbeat||关节心跳
-    /**
-    * TODO:Constantly send the command information set up in the previous step to the robot to prevent the loss of machine communication.
-    * TODO:不断发送上一步设置的命令信息给机器人，防止机器通讯丢失。
-    */
-    //% group="Joint angle control"
-    //% blockGap=8
-    //% blockId=Joint_Heartbeat block="Joint Heartbeat"
-    export function Joint_Heartbeat(): void {
-        Joint_SPI_Send()
-    }
-    */
+//     //###Joint Heartbeat||关节心跳
+//     /**
+//     * TODO:Constantly send the command information set up in the previous step to the robot to prevent the loss of machine communication.
+//     * TODO:不断发送上一步设置的命令信息给机器人，防止机器通讯丢失。
+//     */
+//     //% group="Joint angle control"
+//     //% blockGap=8
+//     //% blockId=Joint_Heartbeat block="Joint Heartbeat"
+//     export function Joint_Heartbeat(): void {
+//         Joint_SPI_Send()
+//     }
+//     
 /* ***********************************************传感器***************************************** */
 
     //###Ultrasound||超声波
